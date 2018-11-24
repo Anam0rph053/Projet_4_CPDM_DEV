@@ -5,21 +5,23 @@
 <div class="container">
   <h3>Billetterie du Louvre</h3>
     <div class="form-row">
-      <div class="col-2">
+      <div class="col">
           {{ form_row(formBooking.visitDate) }}
       </div>
-      <div class="col-4">
+      <div class="col">
           {{ form_row(formBooking.email) }}
       </div>
-      <div class="col-2">
+      <div class="col">
           {{ form_row(formBooking.ticketNumber) }}
       </div>
-      <div class="col-3">
+      <div class="col">
           {{ form_row(formBooking.ticketType) }}
       </div>
-      <div class="col-2">
-      <button type="button" class="btn btn-success">Success</button>
-      </div>
+    </div>
+    <div class="col" >
+      <a href="{{ path('info')}}" class="btn btn-primary">
+        Valider
+      </a>
     </div>
 </div>
    {# <form>
