@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <table border="1" class="table table-bordered table-responsive-md table-striped text-center">
+            <thead>
+            <tr>
+                <th class="titre-tab">Nom</th>
+                <th class="titre-tab">Prénom</th>
+                <th class="titre-tab">Tarif</th>
+                <th class="titre-tab">Actions</th>
+            </tr>
+
+            </thead>
+
+
+
+
+
+            <tr>
+                <td class="pt-3-half"></td>
+                <td class="pt-3-half"></td>
+                <td class="pt-3-half"></td>
+                <td class="pt-3-half"><span class="table-remove"><a href="<?=HOST;?>delete-post&amp;id=<?=$post->getId()?>" ><button type="button"
+                                                                                                                                     class="btn btn-danger btn-rounded btn-sm my-0">Effacer</button></a></span>
+                    <span class="table-"><a href="<?= HOST; ?>edit-post&amp;id=<?=$post->getId()?>"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Modifier</button></a></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+
+{% endblock %}

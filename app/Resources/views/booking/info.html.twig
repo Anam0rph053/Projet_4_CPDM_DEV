@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+    <h3>Billetterie du Louvre</h3>
+    <div class="form-row">
+        <div class="col">
+            {{ form_row(formTicket.lastName) }}
+        </div>
+        <div class="col">
+            {{ form_row(formTicket.firstName) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col">
+            {{ form_row(formTicket.birthDate) }}
+        </div>
+        <div class="col">
+            {{ form_row(formTicket.country) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col">
+            {{ form_row(formTicket.reducePrice) }}
+        </div>
+    </div>
+    <button type="button" class="btn btn-success">Success</button>
+
+</div>
+
+
+</div>
+{% endblock %}
