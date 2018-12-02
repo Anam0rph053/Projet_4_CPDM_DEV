@@ -3,69 +3,89 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Ticket;
+use AppBundle\Form\BookingTicketsType;
 use AppBundle\Form\BookingType;
 use AppBundle\Form\TicketType;
+use AppBundle\Service\PriceCalculator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\Booking;
-
 
 
 class FrontController extends Controller
 {
     /**
-     * @Route("/home", name="home")
+     * @Route("/", name="home")
      */
-    public function homeAction(Request $request)
+    public function homeAction(Request $request, SessionInterface $session)
     {
         $booking = new Booking();
+        $ticket = new Ticket();
 
-        $formBooking = $this->get('form.factory')->create(BookingType::class, $booking);
+        $formBooking = $this->createForm(BookingType::class, $booking);
+
+        $formBooking->handleRequest($request);
+
+        if ($formBooking->isSubmitted() && $formBooking->isValid()) {
 
 
-        if ($request->isMethod('POST') && $formBooking->handleRequest($request)->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($booking);
-            $em->flush();
+            // TODO ajouter autant de ticket vide que demandé dans l'objet booking
 
-                return $this->redirectToRoute('home');
-            }
+            for($x = 0; $x < $booking->getTicketNumber(); $x++)
+
+            $booking->addTicket($ticket);
+            $session->set('booking', $booking);
+
+
+
+
+            return $this->redirectToRoute('info');
+        }
         // replace this example code with whatever you need
         return $this->render('booking\home.html.twig', array(
-            'formBooking'  => $formBooking->createView(),
+                'formBooking' => $formBooking->createView(),
             )
-           );
+        );
     }
+
 
     /**
      * @Route("/info", name="info")
      */
-    public function infoAction(Request $request)
+    public function infoAction(Request $request, SessionInterface $session, PriceCalculator $calculator)
     {
-        $ticket = new Ticket();
 
-        $formTicket = $this->get('form.factory')->create(TicketType::class, $ticket);
+        $booking = $session->get('booking');
+        dump($booking);
 
 
-        if ($request->isMethod('POST') && $formTicket->handleRequest($request)->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($ticket);
-            $em->flush();
+        $form = $this->createForm(BookingTicketsType::class, $booking);
+        $form->handleRequest($request);
 
-            return $this->redirectToRoute('home');
+        if ($form->isSubmitted() && $form->isValid()) {
+
+// TODO calculer le prix des tickets et du total de la commande
+            $calculator->computePrice($booking);
+
+            return $this->redirectToRoute('recap');
         }
+
         // replace this example code with whatever you need
         return $this->render('booking\info.html.twig', array(
-                'formTicket'  => $formTicket->createView(),
+                'form' => $form->createView(),
             )
         );
     }
+
     /**
      * @Route("/recap", name="recap")
      */
-    public function recapAction()
+    public function recapAction(SessionInterface $session)
     {
+        $booking = $session->get('booking');
+        dump($booking);
         return $this->render('booking\recap.html.twig'
         );
     }

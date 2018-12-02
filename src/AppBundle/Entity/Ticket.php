@@ -57,7 +57,7 @@ class Ticket
     private $reducePrice;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Booking")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Booking", inversedBy="booking")
      * @ORM\JoinColumn(nullable=false)
      */
     private $booking;

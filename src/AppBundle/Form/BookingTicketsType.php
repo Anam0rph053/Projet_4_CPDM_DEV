@@ -15,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class BookingType extends AbstractType
+class BookingTicketsType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -23,20 +23,9 @@ class BookingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('visitDate', DateType::class, array(
-                'widget'   =>'single_text',
-            ))
-            ->add('ticketNumber', ChoiceType::class, array(
-                'choices' => array_combine(range(Booking::MIN_TICKETS_PER_BOOKING,Booking::MAX_TICKETS_PER_BOOKING),range(Booking::MIN_TICKETS_PER_BOOKING,Booking::MAX_TICKETS_PER_BOOKING))
-            ))
-            ->add('email', EmailType::class)
-            ->add('ticketType', ChoiceType::class,
-                array(
-                    'choices' => array(
-                        'Billet Journée' => Booking::TYPE_FULL_DAY ,
-                        'Billet Demi Journée' => Booking::TYPE_HALF_DAY
-                    )
-                ));
+            ->add('tickets', CollectionType::class,[
+                'entry_type' => TicketType::class
+            ]);
     }/**
      * {@inheritdoc}
      */
@@ -52,7 +41,7 @@ class BookingType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_booking';
+        return 'appbundle_booking_tickets';
     }
 
 

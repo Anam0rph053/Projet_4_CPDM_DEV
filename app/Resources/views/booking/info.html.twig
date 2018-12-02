@@ -3,35 +3,17 @@
 {% block body %}
     <div class="container">
     <h3>Billetterie du Louvre</h3>
-    <div class="form-row">
+
+        {{ form_start(form) }}
+
+        {{ form_row(form) }}
+
+
         <div class="col">
-            {{ form_row(formTicket.lastName) }}
+            <input type="submit" class="btn btn-primary" value="Valider">
         </div>
-        <div class="col">
-            {{ form_row(formTicket.firstName) }}
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col">
-            {{ form_row(formTicket.birthDate) }}
-        </div>
-        <div class="col">
-            {{ form_row(formTicket.country) }}
-        </div>
-    </div>
-    <div class="form-row">
-        <div class="col">
-            {{ form_row(formTicket.reducePrice) }}
-        </div>
-    </div>
-        <div class="col-2" >
-            <a href="{{ path('recap')}}" class="btn btn-success">
-                Valider
-            </a>
-        </div>
+        {{ form_end(form) }}
 
 </div>
-
-
 </div>
 {% endblock %}
