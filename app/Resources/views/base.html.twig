@@ -29,7 +29,16 @@
             </div>
         </nav>
 
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ path('home') }}"></a></li>
+                <li class="breadcrumb-item"><a href="{{ path('info') }}">Renseignements</a></li>
+                <li class="breadcrumb-item"><a href="{{ path('recap') }}">Commande</a></li>
+                <li class="breadcrumb-item"><a href="#">Paiement</a></li>
+                <li class="breadcrumb-item"><a href="#">Confirmation</a></li>
 
+            </ol>
+        </nav>
         {% block body %}{% endblock %}
 
         {% block javascripts %}

@@ -16,7 +16,7 @@ class Booking
     const TYPE_FULL_DAY = 'allDay';
     const TYPE_HALF_DAY = 'halfDay';
     const MAX_TICKETS_PER_BOOKING = 10;
-    const MIN_TICKETS_PER_BOOKING = 1 ;
+    const MIN_TICKETS_PER_BOOKING = 1;
     /**
      * @var int
      *
@@ -66,6 +66,12 @@ class Booking
      * @ORM\JoinColumn(nullable=false)
      */
     private $tickets;
+
+    /**
+     * @ORM\Column(name="price", type="float")
+     */
+    private $price;
+
 
     public function __construct()
     {
@@ -232,10 +238,35 @@ class Booking
     /**
      * Get ticket.
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection | Ticket[]
      */
     public function getTickets()
     {
         return $this->tickets;
+    }
+
+
+    /**
+     * Set price.
+     *
+     * @param float $price
+     *
+     * @return Booking
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price.
+     *
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
     }
 }

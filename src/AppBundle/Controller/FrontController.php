@@ -6,6 +6,7 @@ use AppBundle\Entity\Ticket;
 use AppBundle\Form\BookingTicketsType;
 use AppBundle\Form\BookingType;
 use AppBundle\Form\TicketType;
+use AppBundle\Manager\BookingManager;
 use AppBundle\Service\PriceCalculator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,27 +20,17 @@ class FrontController extends Controller
     /**
      * @Route("/", name="home")
      */
-    public function homeAction(Request $request, SessionInterface $session)
+    public function homeAction(Request $request, BookingManager $bookingManager)
     {
-        $booking = new Booking();
-        $ticket = new Ticket();
+
+        $booking = $bookingManager->initBooking();
 
         $formBooking = $this->createForm(BookingType::class, $booking);
-
         $formBooking->handleRequest($request);
 
         if ($formBooking->isSubmitted() && $formBooking->isValid()) {
 
-
-            // TODO ajouter autant de ticket vide que demandé dans l'objet booking
-
-            for($x = 0; $x < $booking->getTicketNumber(); $x++)
-
-            $booking->addTicket($ticket);
-            $session->set('booking', $booking);
-
-
-
+            $bookingManager->generateTickets($booking);
 
             return $this->redirectToRoute('info');
         }
@@ -54,20 +45,17 @@ class FrontController extends Controller
     /**
      * @Route("/info", name="info")
      */
-    public function infoAction(Request $request, SessionInterface $session, PriceCalculator $calculator)
+    public function infoAction(Request $request, BookingManager $bookingManager)
     {
 
-        $booking = $session->get('booking');
-        dump($booking);
-
+        $booking = $bookingManager->getCurrentBooking();
 
         $form = $this->createForm(BookingTicketsType::class, $booking);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-// TODO calculer le prix des tickets et du total de la commande
-            $calculator->computePrice($booking);
+            $bookingManager->computeTotalPrice($booking);
 
             return $this->redirectToRoute('recap');
         }
@@ -82,11 +70,15 @@ class FrontController extends Controller
     /**
      * @Route("/recap", name="recap")
      */
-    public function recapAction(SessionInterface $session)
+    public function recapAction(BookingManager $bookingManager)
     {
-        $booking = $session->get('booking');
-        dump($booking);
-        return $this->render('booking\recap.html.twig'
+
+        $booking = $bookingManager->getCurrentBooking();
+
+
+        return $this->render('booking\recap.html.twig', array(
+                'booking' => $booking
+            )
         );
     }
 }

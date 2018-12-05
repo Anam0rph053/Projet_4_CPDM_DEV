@@ -54,7 +54,15 @@ class Ticket
      *
      * @ORM\Column(name="reducePrice", type="boolean", nullable=true)
      */
-    private $reducePrice;
+    private $reducePrice ;
+
+    /**
+     * @var  int
+     * @ORM\Column(name="Price", type="integer")
+     */
+    private $price;
+
+
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Booking", inversedBy="booking")
@@ -194,6 +202,22 @@ class Ticket
     }
 
     /**
+     * @return int
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param int $totalPrice
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+
+    /**
      * Set booking.
      *
      * @param \AppBundle\Entity\Booking $booking
@@ -206,6 +230,7 @@ class Ticket
 
         return $this;
     }
+
 
     /**
      * Get booking.

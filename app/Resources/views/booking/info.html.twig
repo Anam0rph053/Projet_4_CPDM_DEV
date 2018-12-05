@@ -6,8 +6,25 @@
 
         {{ form_start(form) }}
 
-        {{ form_row(form) }}
+{% for ticket in form.tickets %}
+    <div class="form-row">
+        <div class="col">
+            {{ form_row(ticket.lastName) }}
+        </div>
+        <div class="col">
+            {{ form_row(ticket.firstName) }}
+        </div>
 
+        <div class="col">
+            {{ form_row(ticket.birthDate) }}
+        </div>
+        <div class="col">
+            {{ form_row(ticket.country) }}
+        </div>
+    </div>
+            {{ form_row(ticket.reducePrice) }}
+
+{% endfor %}
 
         <div class="col">
             <input type="submit" class="btn btn-primary" value="Valider">
@@ -15,5 +32,5 @@
         {{ form_end(form) }}
 
 </div>
-</div>
+
 {% endblock %}

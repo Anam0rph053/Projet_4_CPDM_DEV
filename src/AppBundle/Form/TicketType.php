@@ -25,7 +25,9 @@ class TicketType extends AbstractType
                 'widget'   => 'single_text'
             ) )
             ->add('country', CountryType::class)
-            ->add('reducePrice', CheckboxType::class)
+            ->add('reducePrice', CheckboxType::class, array(
+                'required' => false
+            ))
         ;
     }
 

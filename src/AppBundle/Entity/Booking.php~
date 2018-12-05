@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Booking
 {
+    const TYPE_FULL_DAY = 'allDay';
+    const TYPE_HALF_DAY = 'halfDay';
+    const MAX_TICKETS_PER_BOOKING = 10;
+    const MIN_TICKETS_PER_BOOKING = 1;
     /**
      * @var int
      *
@@ -60,11 +65,18 @@ class Booking
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="booking")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $ticket;
+    private $tickets;
+
+    /**
+     * @ORM\Column(name="price", type="float")
+     */
+    private $price;
+
 
     public function __construct()
     {
         $this->visitDate = new \DateTime();
+        $this->tickets = new ArrayCollection();
     }
 
     /**
@@ -196,4 +208,41 @@ class Booking
     {
         return $this->transactionNumber;
     }
+
+    /**
+     * Add ticket.
+     *
+     * @param \AppBundle\Entity\Ticket $ticket
+     *
+     * @return Booking
+     */
+    public function addTicket(\AppBundle\Entity\Ticket $ticket)
+    {
+        $this->tickets[] = $ticket;
+
+        return $this;
+    }
+
+    /**
+     * Remove ticket.
+     *
+     * @param \AppBundle\Entity\Ticket $ticket
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeTicket(\AppBundle\Entity\Ticket $ticket)
+    {
+        return $this->tickets->removeElement($ticket);
+    }
+
+    /**
+     * Get ticket.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTickets()
+    {
+        return $this->tickets;
+    }
+
 }

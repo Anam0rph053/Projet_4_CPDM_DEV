@@ -8,21 +8,28 @@
                 <th class="titre-tab">Nom</th>
                 <th class="titre-tab">Prénom</th>
                 <th class="titre-tab">Tarif</th>
-                <th class="titre-tab">Actions</th>
             </tr>
             </thead>
+{% for ticket in booking.tickets %}
             <tr>
-                <td class="pt-3-half"></td>
-                <td class="pt-3-half"></td>
-                <td class="pt-3-half"></td>
-                <td class="pt-3-half"><span class="table-remove"><a href=""><button type="button"
-                                                                                                                                     class="btn btn-danger btn-rounded btn-sm my-0">Supprimer</button></a></span>
-                    <span class="table-"><a href=""><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Modifier</button></a></span>
-                </td>
+                <td class="pt-3-half">{{ ticket.lastName }}</td>
+                <td class="pt-3-half">{{ ticket.firstName }}</td>
+                <td class="pt-3-half">{{ ticket.price }}</td>
             </tr>
+{% endfor %}
         </table>
+    <div class="form-row">
+        <div class="col">
+            <h4> Total à Payer : {{ booking.price }}</h4>
+        </div>
+        <div class="col">
+            <input type="submit" class="btn btn-primary" value="Paiement">
+            <input type="submit" class="btn btn-danger" value="Modifier">
+
+        </div>
+
+
+
     </div>
-
-
 
 {% endblock %}
