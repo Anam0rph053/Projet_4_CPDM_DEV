@@ -10,26 +10,44 @@
                 <th class="titre-tab">Tarif</th>
             </tr>
             </thead>
+
 {% for ticket in booking.tickets %}
+
             <tr>
                 <td class="pt-3-half">{{ ticket.lastName }}</td>
                 <td class="pt-3-half">{{ ticket.firstName }}</td>
-                <td class="pt-3-half">{{ ticket.price }}</td>
+                <td class="pt-3-half">{{ ticket.price }} €</td>
             </tr>
+
 {% endfor %}
         </table>
     <div class="form-row">
         <div class="col">
-            <h4> Total à Payer : {{ booking.price }}</h4>
+            <h4> Total à Payer : {{ booking.price }} € </h4>
         </div>
         <div class="col">
-            <input type="submit" class="btn btn-primary" value="Paiement">
-            <input type="submit" class="btn btn-danger" value="Modifier">
+
+            <input type="submit" class="btn btn-danger" value="Modifier" >
+            <a href="{{ path('info') }}"></a>
+        </div>
+            <div class="col">
+            <form action="" method="POST">
+                <script
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_test_0jbUolf1oNk1TiOAtKSzAEy3"
+                        data-amount="{{ booking.price * 100 }}"
+                        data-name="Billetterie du Louvre"
+                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                        data-locale="auto"
+                        data-currency="eur"
+                        data-zip-code="true"
+                        data-email="{{ booking.email }}">
+                </script>
+            </form>
+            </div>
+
 
         </div>
-
-
-
     </div>
 
 {% endblock %}

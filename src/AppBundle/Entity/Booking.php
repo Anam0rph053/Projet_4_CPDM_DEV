@@ -2,14 +2,18 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Validator\Constraints as MyAssert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Booking
  *
  * @ORM\Table(name="booking")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\BookingRepository")
+ * @MyAssert\HalfDay()
+ * @MyAssert\OverBooking()
  */
 class Booking
 {
@@ -30,6 +34,12 @@ class Booking
      * @var \DateTime
      *
      * @ORM\Column(name="visitDate", type="datetime")
+     * @Assert\DateTime()
+     * @MyAssert\NotTuesday()
+     * @MyAssert\NotSunday()
+     * @MyAssert\BankHolidays()
+     *
+     *
      */
     private $visitDate;
 
@@ -37,6 +47,7 @@ class Booking
      * @var int
      *
      * @ORM\Column(name="ticketNumber", type="integer")
+     * @Assert\Type(type="integer")
      */
     private $ticketNumber;
 
@@ -44,6 +55,8 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\Email()
+     * @Assert\Length(max=70)
      */
     private $email;
 

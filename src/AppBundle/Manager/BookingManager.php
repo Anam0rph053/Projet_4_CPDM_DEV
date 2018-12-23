@@ -11,9 +11,12 @@ namespace AppBundle\Manager;
 
 use AppBundle\Entity\Booking;
 use AppBundle\Entity\Ticket;
+use AppBundle\Service\Payment;
 use AppBundle\Service\PriceCalculator;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 
 /**
  * Class BookingManager
@@ -31,18 +34,25 @@ class BookingManager
      */
     private $calculator;
 
+    /**
+     * @var Payment
+     */
+    private $payment;
 
     /**
      * BookingManager constructor.
      * @param SessionInterface $session
      * @param PriceCalculator $calculator
+     * @param Payment $payment
      */
-    public function __construct(SessionInterface $session, PriceCalculator $calculator)
+    public function __construct(SessionInterface $session, PriceCalculator $calculator, Payment $payment)
     {
         $this->session = $session;
         $this->calculator = $calculator;
-    }
+        $this->payment = $payment;
 
+
+    }
 
     /**
      * @return Booking
@@ -76,10 +86,15 @@ class BookingManager
         return $booking;
 
     }
-    public function computeTotalPrice(PriceCalculator $calculator, Booking $booking)
+    public function computeTotalPrice(Booking $booking)
     {
-        $calculator->computePrice($booking);
+        $this->calculator->computePrice($booking);
+
     }
 
+    public function payment(Booking $booking)
+    {
+        $this->payment->doPayment($booking->getPrice(),"Votre Commande");
+    }
 
 }

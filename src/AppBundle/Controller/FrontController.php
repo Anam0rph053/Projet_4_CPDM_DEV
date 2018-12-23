@@ -61,7 +61,7 @@ class FrontController extends Controller
         }
 
         // replace this example code with whatever you need
-        return $this->render('booking\info.html.twig', array(
+        return $this->render('/booking/info.html.twig', array(
                 'form' => $form->createView(),
             )
         );
@@ -70,15 +70,35 @@ class FrontController extends Controller
     /**
      * @Route("/recap", name="recap")
      */
-    public function recapAction(BookingManager $bookingManager)
+    public function recapAction(Request $request, BookingManager $bookingManager)
     {
 
         $booking = $bookingManager->getCurrentBooking();
 
+        if ($request->isMethod('POST')) {
 
-        return $this->render('booking\recap.html.twig', array(
+            $bookingManager->Payment($booking);
+
+            return $this->redirectToRoute('confirm');
+
+        }
+
+
+        return $this->render('/booking/recap.html.twig', array(
                 'booking' => $booking
             )
         );
+
     }
+
+    /**
+     * @Route("/confirm", name="confirm")
+     */
+    public function confirmAction()
+    {
+        return $this->render('/booking/confirm.html.twig');
+    }
+
 }
+
+
