@@ -75,7 +75,7 @@ class Booking
     private $transactionNumber;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="booking")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="booking", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $tickets;

@@ -16,6 +16,8 @@ use AppBundle\Service\PriceCalculator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 
 /**
@@ -24,6 +26,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class BookingManager
 {
+
     const SESSION_BOOKING_KEY = 'booking';
     /**
      * @var SessionInterface
@@ -45,12 +48,12 @@ class BookingManager
      * @param PriceCalculator $calculator
      * @param Payment $payment
      */
-    public function __construct(SessionInterface $session, PriceCalculator $calculator, Payment $payment)
+    public function __construct(SessionInterface $session, PriceCalculator $calculator, Payment $payment, EntityManagerInterface $entityManager)
     {
         $this->session = $session;
         $this->calculator = $calculator;
         $this->payment = $payment;
-
+        $this->em = $entityManager;
 
     }
 
@@ -94,7 +97,17 @@ class BookingManager
 
     public function payment(Booking $booking)
     {
-        $this->payment->doPayment($booking->getPrice(),"Votre Commande");
+        if($this->payment->doPayment($booking->getPrice(),"Votre Commande")){
+            $booking->setTransactionNumber(uniqid());
+            $this->em->persist($booking);
+            $this->em->flush();
+
+            return true;
+        }
+
+        return false;
+
     }
+
 
 }

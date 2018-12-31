@@ -16,8 +16,6 @@ use Symfony\Component\HttpFoundation\RequestStack;
 
 class Payment
 {
-
-
     private $stripePrivate;
 
     /** @var Request  */
@@ -32,15 +30,21 @@ class Payment
     public function doPayment($price, $desc )
     {
 
-
         $token = $this->request->get('stripeToken');
         \Stripe\Stripe::setApiKey($this->stripePrivate);
-        \Stripe\Charge::create(array(
-            "amount" => $price * 100,
-            "currency" => "eur",
-            "source" => $token,
-            "description" => $desc
-        ));
+        try{
+            $charge = \Stripe\Charge::create(array(
+                "amount" => $price * 100,
+                "currency" => "eur",
+                "source" => $token,
+                "description" => $desc
+            ));
 
-    }
+            return $charge['id'];
+
+        }catch(\Stripe\Error\Card $e) {
+            return false;
+        }
+
+    } // try catch si probleme return false, charge renvoi une reponse
 }

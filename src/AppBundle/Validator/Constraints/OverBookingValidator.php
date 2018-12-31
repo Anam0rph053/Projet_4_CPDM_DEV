@@ -20,6 +20,8 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class OverBookingValidator extends ConstraintValidator
 {
+    const OVERBOOKING = 1000;
+
     /**
      * @var BookingRepository
      */
@@ -45,7 +47,14 @@ class OverBookingValidator extends ConstraintValidator
         {
             return;
         }
-        $this->repo->overbooking($object->getVisitDate());
+        $ticketSoldNumber = $this->repo->overbooking($object->getVisitDate());
+
+        if($ticketSoldNumber + $object->getTicketNumber() > self::OVERBOOKING){
+            $this->context->buildViolation($constraint->message)
+                ->atPath('ticketNumber')
+                ->addViolation();
+        }
+
     }
 
 }

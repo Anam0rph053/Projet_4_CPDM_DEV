@@ -70,7 +70,7 @@ class Ticket
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Booking", inversedBy="booking")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Booking", inversedBy="booking", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $booking;

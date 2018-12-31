@@ -77,7 +77,7 @@ class FrontController extends Controller
 
         if ($request->isMethod('POST')) {
 
-            $bookingManager->Payment($booking);
+            $bookingManager->payment($booking);
 
             return $this->redirectToRoute('confirm');
 
