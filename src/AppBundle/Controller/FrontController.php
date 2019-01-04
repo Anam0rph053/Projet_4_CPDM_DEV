@@ -2,9 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Contact;
 use AppBundle\Entity\Ticket;
 use AppBundle\Form\BookingTicketsType;
 use AppBundle\Form\BookingType;
+use AppBundle\Form\ContactType;
 use AppBundle\Form\TicketType;
 use AppBundle\Manager\BookingManager;
 use AppBundle\Service\Mailer;
@@ -113,6 +115,31 @@ class FrontController extends Controller
             'booking' => $booking));
     }
 
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contactAction(Request $request, BookingManager $bookingManager)
+    {
+        $contact = new Contact();
+
+        $formContact = $this->createForm(ContactType::class);
+        $formContact->handleRequest($request);
+
+        if ($formContact->isSubmitted() && $formContact->isValid()) {
+             $bookingManager->contact($contact);
+             return $this->redirectToRoute(('confirmContact.html.twig'));
+
+            }else {
+                $this->addFlash(
+                    'notice',
+                    'Une erreur s\'est produite lors de l\'envoi de votre message, Merci de réessayer'
+                );
+            }
+
+        return $this->render('contact/contactForm.html.twig', array(
+            'formContact' => $formContact->createView()
+        ));
+    }
 }
 
 

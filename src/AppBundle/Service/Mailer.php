@@ -8,6 +8,8 @@
 
 namespace AppBundle\Service;
 use AppBundle\Entity\Booking;
+use AppBundle\Entity\Contact;
+use AppBundle\Entity\Ticket;
 use Twig_Environment;
 
 
@@ -37,12 +39,9 @@ class Mailer
     public function sendEmail(Booking $booking)
     {
 
-
-
         $message = new \Swift_Message('Vous avez reçu la commande N° : '. $booking->getTransactionNumber());
 
         $cid = $message->embed(\Swift_Image::fromPath('media/entete.png'));
-
 
         $message
             ->setFrom(['louvre_resa@louvre.fr' => 'Billetterie'])
@@ -50,6 +49,29 @@ class Mailer
             ->setBody(
                 $this->twig_Environment->render('booking/mailer_template.html.twig',
                     array('booking' => $booking, 'imgUrl'=> $cid)
+                ),
+                'text/html'
+            );
+        return $this->mailer->send($message);
+    }
+    /**
+     * @param Contact $contact
+     * @return int
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+
+    public function sendMessage(Contact $contact)
+    {
+        $message = new \Swift_Message('Vous avez reçu un message de : '. $contact->getLastName() . $contact->getFirstName());
+
+        $message
+            ->setFrom(['louvre_contact@louvre.fr' => 'Contact'])
+            ->setTo([$contact->getEmail()])
+            ->setBody(
+                $this->twig_Environment->render('contact/mailer_contact_template.html.twig',
+                   array('contact' => $contact)
                 ),
                 'text/html'
             );
