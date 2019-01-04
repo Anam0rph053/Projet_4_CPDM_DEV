@@ -7,6 +7,7 @@ use AppBundle\Form\BookingTicketsType;
 use AppBundle\Form\BookingType;
 use AppBundle\Form\TicketType;
 use AppBundle\Manager\BookingManager;
+use AppBundle\Service\Mailer;
 use AppBundle\Service\PriceCalculator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,7 +35,7 @@ class FrontController extends Controller
 
             return $this->redirectToRoute('info');
         }
-        // replace this example code with whatever you need
+
         return $this->render('booking\home.html.twig', array(
                 'formBooking' => $formBooking->createView(),
             )
@@ -60,7 +61,6 @@ class FrontController extends Controller
             return $this->redirectToRoute('recap');
         }
 
-        // replace this example code with whatever you need
         return $this->render('/booking/info.html.twig', array(
                 'form' => $form->createView(),
             )
@@ -69,24 +69,32 @@ class FrontController extends Controller
 
     /**
      * @Route("/recap", name="recap")
+     *
      */
     public function recapAction(Request $request, BookingManager $bookingManager)
     {
 
         $booking = $bookingManager->getCurrentBooking();
-
         if ($request->isMethod('POST')) {
 
-            $bookingManager->payment($booking);
+           if($bookingManager->payment($booking)){
+               return $this->redirectToRoute('confirm');
 
-            return $this->redirectToRoute('confirm');
-
+           }else {
+               $this->addFlash(
+                   'notice',
+                   'Une erreur s\'est produite lors de la transaction, Merci de réessayer'
+               );
+               return $this->render('/booking/recap.html.twig', array(
+                       'booking' => $booking,
+                       'stripe_public' => $this->getParameter('stripe_public')
+                   )
+               );
+           }
         }
 
-
         return $this->render('/booking/recap.html.twig', array(
-                'booking' => $booking
-            )
+                'booking' => $booking,)
         );
 
     }
@@ -94,9 +102,15 @@ class FrontController extends Controller
     /**
      * @Route("/confirm", name="confirm")
      */
-    public function confirmAction()
+    public function confirmAction(BookingManager $bookingManager)
     {
-        return $this->render('/booking/confirm.html.twig');
+
+        $booking = $bookingManager->getCurrentBooking();
+
+        $bookingManager->clearFunction();
+
+        return $this->render('/booking/confirm.html.twig', array(
+            'booking' => $booking));
     }
 
 }

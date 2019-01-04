@@ -26,14 +26,13 @@
             <h4> Total à Payer : {{ booking.price }} € </h4>
         </div>
         <div class="col">
-
-            <input type="submit" class="btn btn-danger" value="Modifier" >
-            <a href="{{ path('info') }}"></a>
+            <a id="btn" class="btn btn-danger"  href="{{path('info') }}">Modifier</a>
         </div>
-            <div class="col">
+            <div class="col-md-4 col-md-offset-2">
             <form action="" method="POST">
                 <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-label="Paiement"
                         data-key="pk_test_0jbUolf1oNk1TiOAtKSzAEy3"
                         data-amount="{{ booking.price * 100 }}"
                         data-name="Billetterie du Louvre"

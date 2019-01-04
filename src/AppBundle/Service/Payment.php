@@ -46,5 +46,5 @@ class Payment
             return false;
         }
 
-    } // try catch si probleme return false, charge renvoi une reponse
+    }
 }

@@ -232,6 +232,7 @@ class Booking
     public function addTicket(\AppBundle\Entity\Ticket $ticket)
     {
         $this->tickets[] = $ticket;
+        $ticket->setBooking($this );
 
         return $this;
     }

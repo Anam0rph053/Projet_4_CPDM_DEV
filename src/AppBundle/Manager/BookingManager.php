@@ -11,6 +11,7 @@ namespace AppBundle\Manager;
 
 use AppBundle\Entity\Booking;
 use AppBundle\Entity\Ticket;
+use AppBundle\Service\Mailer;
 use AppBundle\Service\Payment;
 use AppBundle\Service\PriceCalculator;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,12 +49,13 @@ class BookingManager
      * @param PriceCalculator $calculator
      * @param Payment $payment
      */
-    public function __construct(SessionInterface $session, PriceCalculator $calculator, Payment $payment, EntityManagerInterface $entityManager)
+    public function __construct(SessionInterface $session, PriceCalculator $calculator, Payment $payment, EntityManagerInterface $entityManager, Mailer $mailer)
     {
         $this->session = $session;
         $this->calculator = $calculator;
         $this->payment = $payment;
         $this->em = $entityManager;
+        $this->mailer = $mailer;
 
     }
 
@@ -95,10 +97,18 @@ class BookingManager
 
     }
 
+    /**
+     * @param Booking $booking
+     * @return bool
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
     public function payment(Booking $booking)
     {
         if($this->payment->doPayment($booking->getPrice(),"Votre Commande")){
             $booking->setTransactionNumber(uniqid());
+            $this->mailer->sendEmail($booking);
             $this->em->persist($booking);
             $this->em->flush();
 
@@ -109,5 +119,9 @@ class BookingManager
 
     }
 
+    public function clearFunction()
+    {
+        $this->session->remove('booking');
 
+    }
 }

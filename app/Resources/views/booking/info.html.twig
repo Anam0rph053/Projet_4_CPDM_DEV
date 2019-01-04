@@ -2,28 +2,30 @@
 
 {% block body %}
     <div class="container">
-    <h3>Billetterie du Louvre</h3>
+    <h4>Informations Complémentaires</h4>
+        <hr>
 
         {{ form_start(form) }}
 
 {% for ticket in form.tickets %}
     <div class="form-row">
         <div class="col">
-            {{ form_row(ticket.lastName) }}
+            {{ form_row(ticket.lastName, {'label':'Prénom'}) }}
         </div>
         <div class="col">
-            {{ form_row(ticket.firstName) }}
+            {{ form_row(ticket.firstName, {'label':'Nom'}) }}
         </div>
 
         <div class="col">
-            {{ form_row(ticket.birthDate) }}
+            {{ form_row(ticket.birthDate, {'label':'Date de naissance'}) }}
         </div>
         <div class="col">
-            {{ form_row(ticket.country) }}
+            {{ form_row(ticket.country, {'label':'Pays'}) }}
         </div>
     </div>
-            {{ form_row(ticket.reducePrice) }}
-
+            {{ form_row(ticket.reducePrice, {'label':'Prix réduit'}) }}
+    <p>* Un justificatif devra être présenter afin de justifier la réduction. </p>
+        <hr>
 {% endfor %}
 
         <div class="col">

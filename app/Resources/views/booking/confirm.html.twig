@@ -3,6 +3,12 @@
 
 {% block body %}
 
-<h1>Confirmation de Commande</h1>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Confirmation de Commande</h1>
+            <p class="lead">Félicitation votre commande n° : {{ booking.transactionNumber }} a bien été passée.</p><br/>
+            <p>Un email de comfirmation vous à été envoyer à l'adresse suivante : {{ booking.email }}</p>
+        </div>
+    </div>
 
-{% endblock %}
+{% endblock
