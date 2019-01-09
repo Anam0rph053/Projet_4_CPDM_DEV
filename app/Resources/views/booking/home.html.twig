@@ -2,38 +2,36 @@
 
 {% block body %}
 
-    <div class="video-header wrap">
-        <div class="fullscreen-video-wrap">
-            <video src="{{ asset('media/museum.mp4') }}" autoplay loop></video>
-        </div>
-        <div class="header-overlay">
-            <div class="header-content">
-                {{ form_start(formBooking) }}
+            <div class="video-header wrap">
+                <div class="fullscreen-video-wrap">
+                    <video autoplay loop poster="{{ asset('media/museum.png') }}" id="bgvid">
+                        <source src="{{ asset('media/museum.mp4') }}" type="video/mp4">
+                    </video>
+                </div>
+                <div class="header-overlay">
+                    <div class="header-content">
+                        {{ form_start(formBooking) }}
 
-                <div class="form-row home">
-                    <div class="col">
-                        {{ form_row(formBooking.visitDate, {'label':'Date'}) }}
-                    </div>
-                    <div class="col">
-                        {{ form_row(formBooking.email, {'label':'Email'}) }}
-                    </div>
-                    <div class="col">
-                        {{ form_row(formBooking.ticketNumber, {'label':'Quantité'}) }}
-                    </div>
-                    <div class="col">
-                        {{ form_row(formBooking.ticketType, {'label':'Type'}) }}
+                        <div class="form-row home">
+                            <div class="col">
+                                {{ form_row(formBooking.visitDate, {'label':'Date'}) }}
+                            </div>
+                            <div class="col">
+                                {{ form_row(formBooking.email, {'label':'Email'}) }}
+                            </div>
+                            <div class="col">
+                                {{ form_row(formBooking.ticketNumber, {'label':'Quantité'}) }}
+                            </div>
+                            <div class="col">
+                                {{ form_row(formBooking.ticketType, {'label':'Type'}) }}
+                            </div>
+                        </div>
+                        <div class="col">
+                            <input type="submit" class="btn btn-primary" value="Valider">
+                        </div>
+                        {{ form_end(formBooking) }}
                     </div>
                 </div>
-                <div class="col">
-                    <input type="submit" class="btn btn-primary" value="Valider">
-                </div>
-                {{ form_end(formBooking) }}
             </div>
-        </div>
-    </div>
 
 {% endblock %}
-
-  {% block javascripts %}
-
-  {% endblock %}

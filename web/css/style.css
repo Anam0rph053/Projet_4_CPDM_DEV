@@ -3,48 +3,51 @@ body{
     font-size: 1rem;
     line-height: 1.5;
     color: #333;
+    width:100%;
 
 }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     margin-top: 10px;
-
 }
 /***BGVIDEO***/
-
+*, *:before, *:after {
+    margin: auto;
+    padding: 0;
+    box-sizing: border-box;
+    float: unset;
+}
 .video-header{
+    position:relative;
     height: 100%;
+    width:100%;
     display: flex;
     align-items: center;
     color: #fff;
 }
 
 .wrap{
-    max-width: 960px;
     padding-left: 1rem;
     padding-right: 1rem;
     margin:auto;
     text-align: center;
 }
+
 .fullscreen-video-wrap{
-    margin-top: 150px;
+    margin-top: 50px;
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
 
-
-
 }
 .fullscreen-video-wrap video{
     min-height: 100%;
-    min-width: 100%;
-
-
+    width: 100%;
 }
 
 .header-overlay{
-    margin-top: 150px;
+    margin-top: 50px;
     height: 100%;
     width: 100%;
     position: absolute;
@@ -76,30 +79,38 @@ body{
     padding: 1rem 1rem;
 }
 
-@media(max-width:768px){
+@media(max-width:767px){
     .header-content h1{
         font-size: 20px;
         height:100%;
 
     }
     .header-content p{
-        font-size: 0.6rem;
         padding-top:0;
+
+    }
+
+    .header-content{
+        margin-top:50%;
+
     }
     .fullscreen-video-wrap video{
         width:100%;
         min-height:0;
     }
-}
+
     .header-overlay{
         width:100%;
         margin-top:100px;
-
     }
-
-@media(max-width:768px){
-    .header-overlay{
-        margin-top:18%;
+    .wrap{
+        width:100%;
+    }
+    .col {
+        flex-basis: auto !important;
+    }
+    label{
+        color:black !important;
     }
 }
 /********MENU********/
@@ -163,13 +174,12 @@ section{
 }
 
 /**********BREADCRUMBS******/
+
 *, *:before, *:after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-
 
 ul {
     list-style: none;

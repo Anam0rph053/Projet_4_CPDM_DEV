@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block content %}
+    <div class='breadcrumbs'>
+        <div class='inner'>
+            <ul class='cf'>
+                <li>
+                    <a  href="{{ path('home') }}">
+                        <span class="fas fa-home"></span>
+                        <span>Accueil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('info') }}" >
+                        <span class="fas fa-feather-alt"></span>
+                        <span>Infos</span>
+                    </a>
+                </li>
+                <li>
+                    <a  href="{{ path('recap') }}">
+                        <span class="fas fa-layer-group"></span>
+                        <span>Résumé</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('recap') }}">
+                        <span class="fab fa-cc-stripe"></span>
+                        <span>Paiement</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('confirm') }}">
+                        <span class="fas fa-flag-checkered"></span>
+                        <span>Succès</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

@@ -112,7 +112,13 @@ class FrontController extends Controller
         return $this->render('/booking/confirm.html.twig', array(
             'booking' => $booking));
     }
-
+    /**
+     * @Route("/infosPratiques", name="infosPratiques")
+     */
+    public function infosPratiquesAction()
+    {
+        return $this->render('infoPratiques/infosPratiques.html.twig');
+    }
 }
 
 

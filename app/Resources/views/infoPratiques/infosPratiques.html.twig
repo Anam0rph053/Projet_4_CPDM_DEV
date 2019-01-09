@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <h1>Informations Pratiques</h1>
+    <hr>
+    <h3>Coordonnées du musée du Louvre</h3><br/>
+    <p>Musée du Louvre</p>
+    <p>91A avenue Rivoli</p>
+    <p>75001 Paris</p>
+    <p>01 44 00 00 00</p>
+    <p>contact_louvre@louvre.fr</p><br/>
+
+    <h3>Tarifs</h3><br/>
+
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Type</th>
+                <th scope="col">Catégories</th>
+                <th scope="col">tarifs</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row">Normal</th>
+                <td> 12 ans et + </td>
+                <td>16 € </td>
+            </tr>
+            <tr>
+                <th scope="row">Enfant</th>
+                <td>De 4 à 12 ans</td>
+                <td>8 €</td>
+            </tr>
+            <tr>
+                <th scope="row">Sénior</th>
+                <td>60 ans et +</td>
+                <td>12 €</td>
+            </tr>
+            <tr>
+                <th scope="row">Réduit</th>
+                <td>*</td>
+                <td>10 €</td>
+            </tr>
+            <tr>
+                <th scope="row">Gratuit</th>
+                <td>- de 4 ans</td>
+                <td>0 €</td>
+            </tr>
+            </tbody>
+        </table>
+        <p>* étudiants, chômeurs, employée du ministère de la culture, employée du musée, militaires...</p>
+    </div>
+</div>
+
+{% endblock %}

@@ -65,11 +65,6 @@ class BankHolidaysValidator extends ConstraintValidator
             mktime(0, 0, 0, $easterMonth, $easterDay + 50, $easterYear),
         );
 
-        //sort($BankHolidays);
-
-
-        dump($BankHolidays);
-
         return $BankHolidays;
     }
 }
