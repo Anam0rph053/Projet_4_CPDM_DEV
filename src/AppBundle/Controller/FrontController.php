@@ -116,19 +116,31 @@ class FrontController extends Controller
     }
 
     /**
+     * @Route("/confirm_contact", name="confirmContact")
+     */
+
+    public function confirmContactAction(BookingManager $bookingManager)
+    {
+        $bookingManager->clearFunction();
+
+        return $this->render('contact/confirmContact.html.twig');
+    }
+    /**
      * @Route("/contact", name="contact")
      */
     public function contactAction(Request $request, BookingManager $bookingManager)
     {
-        $contact = new Contact();
 
         $formContact = $this->createForm(ContactType::class);
         $formContact->handleRequest($request);
 
         if ($formContact->isSubmitted() && $formContact->isValid()) {
-             $bookingManager->contact($contact);
-             return $this->redirectToRoute(('confirmContact.html.twig'));
-
+             $bookingManager->contact($formContact->getData());
+            $this->addFlash(
+                'success',
+                'votre message nous a bien été transmis'
+            );
+             return $this->redirectToRoute('confirmContact');
             }else {
                 $this->addFlash(
                     'notice',
@@ -140,6 +152,7 @@ class FrontController extends Controller
             'formContact' => $formContact->createView()
         ));
     }
+
 }
 
 
