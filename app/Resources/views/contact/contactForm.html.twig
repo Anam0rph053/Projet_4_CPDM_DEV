@@ -1,40 +1,41 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    <div class="container">
+        <h4>Contactez - Nous</h4>
+        <hr>
+        <div class="form_row">
+            {{ form_start(formContact) }}
+            <div class="col">
+                <div>
+                    {{ form_row(formContact.lastName, {'label':'Prénom'}) }}
 
-    <form action="<?=HOST;?>contact" method="post">
-        <p class="h4 text-center mb-4" style="font-family: fontastique !important;">Contactez-Moi</p>
+                </div>
+                <div>
+                    {{ form_row(formContact.firstName, {'label':'Nom'}) }}
 
-        <!-- Material input text -->
-        <div class="md-form">
-            <i class="fa fa-user prefix grey-text"></i>
-            <input type="text" id="pseudo" name="pseudo" class="form-control" placeholder="Pseudo" style="font-family: fontastique !important;">
-            <label for="pseudo"</label>
+                </div>
+            </div>
+            <div class="col">
+                <div>
+                    {{ form_row(formContact.email, {'label':'Adresse Electronique'}) }}
+
+                </div>
+            </div>
+            <div class="col">
+                <div>
+                    {{ form_row(formContact.object, {'label':'Objet du message'}) }}
+
+                </div>
+            </div>
+            <div class="col">
+                <div>
+                    {{ form_row(formContact.message, {'label':'Message'}) }}
+
+                </div>
+            </div>
         </div>
+        <input type="submit" class="btn btn-primary" value="Valider">
+        {{ form_end(formContact) }}
 
-        <!-- Material input email -->
-        <div class="md-form">
-            <i class="fa fa-envelope prefix grey-text"></i>
-            <input type="email" name="email" id="email" class="form-control" placeholder="Adresse Electronique" style="font-family: fontastique !important;">
-            <label for="Email"</label>
-        </div>
-
-        <!-- Material input subject -->
-        <div class="md-form">
-            <i class="fa fa-tag prefix grey-text"></i>
-            <input type="text" name="title" id="title" class="form-control" placeholder="Objet du Message" style="font-family: fontastique !important;">
-            <label for="title"</label>
-        </div>
-
-        <!-- Material textarea message -->
-        <div class="md-form">
-            <i class="fas fa-pen-nib prefix grey-text"></i>
-            <textarea type="text" name="message" id="message" class="form-control md-textarea" rows="3" placeholder="Message" style="font-family: fontastique !important;"></textarea>
-            <label for="message"</label>
-        </div>
-
-        <div class="text-center mt-4">
-            <button class="btn btn-default" type="submit">Envoyer</button>
-        </div>
-    </form>
-
+    </div>
 {% endblock %}

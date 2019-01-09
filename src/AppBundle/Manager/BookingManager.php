@@ -10,6 +10,7 @@ namespace AppBundle\Manager;
 
 
 use AppBundle\Entity\Booking;
+use AppBundle\Entity\Contact;
 use AppBundle\Entity\Ticket;
 use AppBundle\Service\Mailer;
 use AppBundle\Service\Payment;
@@ -123,5 +124,16 @@ class BookingManager
     {
         $this->session->remove('booking');
 
+    }
+    /**
+    * @throws \Twig_Error_Loader
+    * @throws \Twig_Error_Runtime
+    * @throws \Twig_Error_Syntax
+    */
+    public function contact( Contact $contact)
+    {
+        $this->mailer->sendMessage($contact);
+        $this->em->persist($contact);
+        $this->em->flush();
     }
 }

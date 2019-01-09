@@ -2,9 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Contact;
 use AppBundle\Entity\Ticket;
 use AppBundle\Form\BookingTicketsType;
 use AppBundle\Form\BookingType;
+use AppBundle\Form\ContactType;
 use AppBundle\Form\TicketType;
 use AppBundle\Manager\BookingManager;
 use AppBundle\Service\Mailer;
@@ -112,6 +114,7 @@ class FrontController extends Controller
         return $this->render('/booking/confirm.html.twig', array(
             'booking' => $booking));
     }
+
     /**
      * @Route("/infosPratiques", name="infosPratiques")
      */
@@ -119,6 +122,46 @@ class FrontController extends Controller
     {
         return $this->render('infoPratiques/infosPratiques.html.twig');
     }
+
+
+    /**
+     * @Route("/confirm_contact", name="confirmContact")
+     */
+
+    public function confirmContactAction(BookingManager $bookingManager)
+    {
+        $bookingManager->clearFunction();
+
+        return $this->render('contact/confirmContact.html.twig');
+    }
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contactAction(Request $request, BookingManager $bookingManager)
+    {
+
+        $formContact = $this->createForm(ContactType::class);
+        $formContact->handleRequest($request);
+
+        if ($formContact->isSubmitted() && $formContact->isValid()) {
+             $bookingManager->contact($formContact->getData());
+            $this->addFlash(
+                'success',
+                'votre message nous a bien été transmis'
+            );
+             return $this->redirectToRoute('confirmContact');
+            }else {
+                $this->addFlash(
+                    'notice',
+                    'Une erreur s\'est produite lors de l\'envoi de votre message, Merci de réessayer'
+                );
+            }
+
+        return $this->render('contact/contactForm.html.twig', array(
+            'formContact' => $formContact->createView()
+        ));
+    }
+
 }
 
 
