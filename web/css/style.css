@@ -1,3 +1,13 @@
+
+@font-face
+{
+    font-family : 'fontastique';
+    src : url('../fonts/fontastique.ttf'),
+          url('../fonts/fontastique.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body{
     margin: 0;
     font-size: 1rem;
@@ -8,7 +18,12 @@ body{
 }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     margin-top: 10px;
+    font-family: 'fontastique', serif;
 }
+p, label, a ,th, td, tr, .form-control, .btn  {
+    font-family: 'fontastique', serif;
+}
+
 /***BGVIDEO***/
 *, *:before, *:after {
     margin: auto;

@@ -1,83 +1,88 @@
+<style type="text/css">
+    body,
+    html,
+    .body {
+        background: #f3f3f3 !important;
+    }
+</style>
+<!-- move the above styles into your custom stylesheet -->
 
-<html>
+<spacer size="16"></spacer>
 
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<container>
 
     <spacer size="16"></spacer>
 
-    <container class="email">
+    <row>
+        <columns>
+            <h1>Billetterie du Louvre</h1>
+            <p>Le musée du Louvre vous remercie pour votre commande</p>
 
-        <spacer size="16"></spacer>
+            <spacer size="16"></spacer>
 
-        <row>
-            <columns>
-                <img src="{{ asset('media/logo.png') }}"/>
-                <h1>Billetterie du Louvre</h1>
-                <p>Le musée du Louvre vous remercie pour votre commande</p>
+            <callout class="secondary">
+                <row>
+                    <columns large="6">
+                        <p>
+                            <strong>Mode de Paiement</strong><br/>
+                            Carte Bancaire
+                        </p>
+                        <p>
+                            <strong>Adresse Electronique</strong><br/>
+                            {{ booking.email }}
+                        </p>
+                        <p>
+                            <strong>Référence de la Commande</strong><br/>
+                            {{ booking.transactionNumber }}
+                        </p>
+                    </columns>
+                </row>
+            </callout>
 
-                <spacer size="16"></spacer>
+            <h4>Order Details</h4>
 
-                <callout class="secondary">
-                    <row>
-                        <columns large="6">
-                            <p>
-                                <strong>Mode de Paiement</strong><br/>
-                                Carte Bancaire
-                            </p>
-                            <p>
-                                <strong>Adresse Electronique</strong><br/>
-                                {{ booking.email }}
-                            </p>
-                            <p>
-                                <strong>Référence de la Commande</strong><br/>
-                                {{ booking.transactionNumber }}
-                            </p>
-                        </columns>
-                    </row>
-                </callout>
+            <table>
+                <tr>
+                    <th class="titre-tab">Nom</th>
+                    <th class="titre-tab">Prénom</th>
+                    <th class="titre-tab">Tarif</th>
+                </tr>
 
-                <h4>Votre Commande</h4>
+                {% for ticket in booking.tickets %}
 
-                <table>
                     <tr>
-                        <th class="titre-tab">Nom</th>
-                        <th class="titre-tab">Prénom</th>
-                        <th class="titre-tab">Tarif</th>
+                        <td class="pt-3-half">{{ ticket.lastName }}</td>
+                        <td class="pt-3-half">{{ ticket.firstName }}</td>
+                        <td class="pt-3-half">{{ ticket.price }} €</td>
                     </tr>
-                    </thead>
+                    <hr/>
+                    <h4> Total Payer : {{ booking.price }} € </h4>
+                {% endfor %}
 
-                    {% for ticket in booking.tickets %}
+            </table>
 
-                        <tr>
-                            <td class="pt-3-half">{{ ticket.lastName }}</td>
-                            <td class="pt-3-half">{{ ticket.firstName }}</td>
-                            <td class="pt-3-half">{{ ticket.price }} €</td>
-                        </tr>
+            <hr/>
 
-                    {% endfor %}
-                </table>
-                <hr/>
-                <h4> Total Payer : {{ booking.price }} € </h4>
+            <h4>Une Questions ? </h4>
 
-            <columns large="3">
-                <h4>Une Questions ? </h4>
-                <p>
-                    Appelez nous au 01 44 00 00 00 <br/>
-                    Email : contact_louvre@louvre.fr
-                </p>
-            </columns>
-            <columns large="3">
-                <p>
-                    91A rue Ricoli,
-                    75001 Paris
-                </p>
-            </columns>
-        </row>
-    </container>
-
-</head>
-</html>
-
+            <p>N'hésiez pas à nous contactez pour tous renseignements</p>
+        </columns>
+    </row>
+    <row class="footer text-center">
+        <columns large="3">
+            <img src="{{ asset('media/logo.png') }}"/>
+        </columns>
+        <columns large="3">
+            <p>
+                Appelez nous au 01 44 00 00 00 <br/>
+                Email : contact_louvre@louvre.fr
+            </p>
+        </columns>
+        <columns large="3">
+            <p>
+                91A rue Ricoli,
+                75001 Paris
+            </p>
+        </columns>
+    </row>
+</container>
