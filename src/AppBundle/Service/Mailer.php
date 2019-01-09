@@ -41,7 +41,7 @@ class Mailer
 
         $message = new \Swift_Message('Vous avez reçu la commande N° : '. $booking->getTransactionNumber());
 
-        $cid = $message->embed(\Swift_Image::fromPath('media/entete.png'));
+        $cid = $message->embed(\Swift_Image::fromPath('media/logo.png'));
 
         $message
             ->setFrom(['louvre_resa@louvre.fr' => 'Billetterie'])
