@@ -2,14 +2,15 @@
 
 {% block body %}
 
-            <div class="video-header wrap">
-                <div class="fullscreen-video-wrap">
-                    <video autoplay loop poster="{{ asset('media/museum.png') }}" id="bgvid">
-                        <source src="{{ asset('media/museum.mp4') }}" type="video/mp4">
-                    </video>
-                </div>
+                <div class="video-header wrap">
+                    <div class="fullscreen-video-wrap">
+                        <video autoplay loop poster="{{ asset('media/museum.png') }}" id="bgvid">
+                            <source src="{{ asset('media/museum.mp4') }}" type="video/mp4">
+                        </video>
+                    </div>
                 <div class="header-overlay">
                     <div class="header-content">
+                        <h1>Réservation</h1>
                         {{ form_start(formBooking) }}
 
                         <div class="form-row home">

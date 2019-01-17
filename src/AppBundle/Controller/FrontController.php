@@ -79,20 +79,25 @@ class FrontController extends Controller
         $booking = $bookingManager->getCurrentBooking();
         if ($request->isMethod('POST')) {
 
-           if($bookingManager->payment($booking)){
-               return $this->redirectToRoute('confirm');
+            try {
+                if ($bookingManager->payment($booking)) {
+                    return $this->redirectToRoute('confirm');
 
-           }else {
-               $this->addFlash(
-                   'notice',
-                   'Une erreur s\'est produite lors de la transaction, Merci de réessayer'
-               );
-               return $this->render('/booking/recap.html.twig', array(
-                       'booking' => $booking,
-                       'stripe_public' => $this->getParameter('stripe_public')
-                   )
-               );
-           }
+                } else {
+                    $this->addFlash(
+                        'notice',
+                        'Une erreur s\'est produite lors de la transaction, Merci de réessayer'
+                    );
+                    return $this->render('/booking/recap.html.twig', array(
+                            'booking' => $booking,
+                            'stripe_public' => $this->getParameter('stripe_public')
+                        )
+                    );
+                }
+            } catch (\Twig_Error_Loader $e) {
+            } catch (\Twig_Error_Runtime $e) {
+            } catch (\Twig_Error_Syntax $e) {
+            }
         }
 
         return $this->render('/booking/recap.html.twig', array(
@@ -144,7 +149,12 @@ class FrontController extends Controller
         $formContact->handleRequest($request);
 
         if ($formContact->isSubmitted() && $formContact->isValid()) {
-             $bookingManager->contact($formContact->getData());
+            try {
+                $bookingManager->contact($formContact->getData());
+            } catch (\Twig_Error_Loader $e) {
+            } catch (\Twig_Error_Runtime $e) {
+            } catch (\Twig_Error_Syntax $e) {
+            }
             $this->addFlash(
                 'success',
                 'votre message nous a bien été transmis'

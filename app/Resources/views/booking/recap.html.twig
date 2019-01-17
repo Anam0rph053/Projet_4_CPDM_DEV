@@ -39,9 +39,15 @@
                         data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                         data-locale="auto"
                         data-currency="eur"
-                        data-zip-code="true"
+                        data-zip-code="false"
                         data-email="{{ booking.email }}">
                 </script>
+                <script>
+                    //cacher le bouton de style stripe
+                    document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+                </script>
+
+                <button id="btn"  class="btn btn-danger">Paiement</button>
             </form>
             </div>
 

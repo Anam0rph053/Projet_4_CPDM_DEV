@@ -253,6 +253,9 @@ ul {
 .breadcrumbs a:hover {
     background: #1abc9c;
 }
+.active{
+    background-color: #1abc9c;
+}
 
 .breadcrumbs a.active {
     color: #777;
