@@ -1,40 +1,56 @@
 {% extends 'base.html.twig' %}
 {% block content %}
-    <div class='breadcrumbs'>
-        <div class='inner' id="sub-header">
-            <ul class='cf'>
-                <li>
-                    <a  href="{{ path('home') }}">
-                        <span class="fas fa-home"></span>
-                        <span>Visite</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('info') }}" >
-                        <span class="fas fa-feather-alt"></span>
-                        <span>Ticket</span>
-                    </a>
-                </li>
-                <li>
-                    <a  href="{{ path('recap') }}">
-                        <span class="fas fa-layer-group"></span>
-                        <span>Résumé</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('recap') }}">
-                        <span class="fab fa-cc-stripe"></span>
-                        <span>Paiement</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ path('confirm') }}">
-                        <span class="fas fa-flag-checkered"></span>
-                        <span>Succès</span>
-                    </a>
-                </li>
-            </ul>
+    <div class="container">
+        <div class="row">
+            <div id="breadcrumbs">
+                <div class='inner' id="sub-header">
+                    <ul class="cf">
+                        <li><a  href="#"><i class="fa fa-home" aria-hidden="true"></i><span class="title_crumbs">Accueil</span></a></li>
+                        <li><a  href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i><span class="title_crumbs">Tickets</span></a></li>
+                        <li><a  href="#"><i class="fa fa-cart-plus" aria-hidden="true"></i><span class="title_crumbs">Panier</span></a></li>
+                        <li><a  href="#"><i class="fa fa-credit-card-alt" aria-hidden="true"></i><span class="title_crumbs">Paiement</span></a></li>
+
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
+
+    {#<div class='breadcrumbs'>#}
+        {#<div class='inner' id="sub-header">#}
+            {#<ul class='cf'>#}
+                {#<li>#}
+                    {#<a  href="{{ path('home') }}">#}
+                        {#<span class=""></span>#}
+                        {#<span>Visite</span>#}
+                    {#</a>#}
+                {#</li>#}
+                {#<li>#}
+                    {#<a href="{{ path('info') }}" >#}
+                        {#<span class="fas fa-feather-alt"></span>#}
+                        {#<span>Ticket</span>#}
+                    {#</a>#}
+                {#</li>#}
+                {#<li>#}
+                    {#<a  href="{{ path('recap') }}">#}
+                        {#<span class="fas fa-layer-group"></span>#}
+                        {#<span>Résumé</span>#}
+                    {#</a>#}
+                {#</li>#}
+                {#<li>#}
+                    {#<a href="{{ 'paiement' }}">#}
+                        {#<span class="fab fa-cc-stripe"></span>#}
+                        {#<span>Paiement</span>#}
+                    {#</a>#}
+                {#</li>#}
+                {#<li>#}
+                    {#<a href="{{ path('confirm') }}">#}
+                        {#<span class="fas fa-flag-checkered"></span>#}
+                        {#<span>Succès</span>#}
+                    {#</a>#}
+                {#</li>#}
+            {#</ul>#}
+        {#</div>#}
+    {#</div>#}
 
 {% endblock %}

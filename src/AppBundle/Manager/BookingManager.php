@@ -88,9 +88,7 @@ class BookingManager
         if(!$booking instanceof  Booking){
             throw new NotFoundHttpException();
         }
-
         return $booking;
-
     }
     public function computeTotalPrice(Booking $booking)
     {

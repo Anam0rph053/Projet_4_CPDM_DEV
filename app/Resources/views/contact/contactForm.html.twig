@@ -1,41 +1,77 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <div class="container">
-        <h4>Contactez - Nous</h4>
-        <hr>
-        <div class="form_row">
-            {{ form_start(formContact) }}
-            <div class="col">
-                <div>
-                    {{ form_row(formContact.lastName, {'label':'Prénom'}) }}
+    <h4 class="Contact">Contactez-moi</h4>
+    <hr>
 
-                </div>
-                <div>
-                    {{ form_row(formContact.firstName, {'label':'Nom'}) }}
-
-                </div>
-            </div>
-            <div class="col">
-                <div>
-                    {{ form_row(formContact.email, {'label':'Adresse Electronique'}) }}
-
-                </div>
-            </div>
-            <div class="col">
-                <div>
-                    {{ form_row(formContact.object, {'label':'Objet du message'}) }}
-
-                </div>
-            </div>
-            <div class="col">
-                <div>
-                    {{ form_row(formContact.message, {'label':'Message'}) }}
-
-                </div>
-            </div>
+    {{ form_start(formContact) }}
+    <div class="form-row">
+        <div class="col">
+            {{ form_row(formContact.lastName, {'label':'Prénom'}) }}
         </div>
-        <input type="submit" class="btn btn-primary" value="Valider">
-        {{ form_end(formContact) }}
+
+        <div class="col">
+            {{ form_row(formContact.firstName, {'label':'Nom'}) }}
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col">
+            {{ form_row(formContact.email, {'label':'Adresse Electronique'}) }}
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col">
+            {{ form_row(formContact.object, {'label':'Objet du message'}) }}
+        </div>
 
     </div>
+        {{ form_end(formContact) }}
+    <div class="form-row">
+        <div class="col">
+            <input type="submit" class="btn btn-primary" value="Valider">
+        </div>
+    </div>
+    </div>
+    {#<div class="container">#}
+        {#<h1 class="Contact">Contactez - Nous</h1>#}
+            {#<hr>#}
+            {#{{ form_start(formContact) }}#}
+            {#<div class="form_row">#}
+                {#<div class="col">#}
+                    {#<div>#}
+                        {#{{ form_row(formContact.lastName, {'label':'Prénom'}) }}#}
+
+                    {#</div>#}
+                    {#<div>#}
+                        {#{{ form_row(formContact.firstName, {'label':'Nom'}) }}#}
+
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="col">#}
+                    {#<div>#}
+                        {#{{ form_row(formContact.email, {'label':'Adresse Electronique'}) }}#}
+
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="col">#}
+                    {#<div>#}
+                        {#{{ form_row(formContact.object, {'label':'Objet du message'}) }}#}
+
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="col">#}
+                    {#<div>#}
+                        {#{{ form_row(formContact.message, {'label':'Message'}) }}#}
+
+                    {#</div>#}
+                {#</div>#}
+            {#</div>#}
+        {#<div class="col">#}
+            {#<input type="submit" class="btn btn-primary" value="Valider" style="align-items: center;"/>#}
+        {#</div>#}
+
+        {#{{ form_end(formContact) }}#}
+    {#</div>#}
+
 {% endblock %}

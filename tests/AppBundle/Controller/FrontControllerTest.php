@@ -63,7 +63,6 @@ class FrontControllerTest extends WebTestCase
 
         $this->assertSame(1, $crawler->filter('html:contains("Réservation")')->count());
 
-
         //TEST INFO
         $crawler = $client->request('GET', '/info');
 
@@ -85,9 +84,10 @@ class FrontControllerTest extends WebTestCase
         //TEST RECAP
         $crawler = $client->request('GET', '/recap');
 
-        $link = $crawler->selectLink('Modifier')->link();
-        $crawler = $this->client->click($link);
-
+        $this->assertSame(1, $crawler->filter('html:contains("Nom")')->count());
+        $this->assertSame(1, $crawler->filter('html:contains("Prénom")')->count());
+        $this->assertSame(1, $crawler->filter('html:contains("Tarifs")')->count());
+        $this->assertSame(1, $crawler->filter('h4:contains("Total à Payer")')->count());
 
 
     }

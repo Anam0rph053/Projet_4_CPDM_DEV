@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="notfound">
+        <div class="notfound-bg"></div>
+        <div class="notfound">
+            <div class="notfound-404">
+                <h1>404</h1>
+            </div>
+            <h2>Oops! La page demandée n'existe pas</h2>
+
+            <a href="{{ path('home') }}">Retour à la page d'Accueil</a>
+        </div>
+    </div>
+    <!-- This templates was made by Colorlib (https://colorlib.com) -->
+{% endblock %}
