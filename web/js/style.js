@@ -13,7 +13,7 @@ $(function () {
 });
 
 $(function(){
-    var url = window.location.href;
+    let url = window.location.href;
 
     $("#sub-header a").each(function() {
 

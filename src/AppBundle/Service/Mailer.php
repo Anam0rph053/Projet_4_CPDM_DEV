@@ -40,15 +40,15 @@ class Mailer
     {
 
         $message = new \Swift_Message('Vous avez reçu la commande N° : '. $booking->getTransactionNumber());
-
         $cid = $message->embed(\Swift_Image::fromPath('media/logo.png'));
+
 
         $message
             ->setFrom(['louvre_resa@louvre.fr' => 'Billetterie'])
             ->setTo([$booking->getEmail()])
             ->setBody(
                 $this->twig_Environment->render('booking/mailer_template.html.twig',
-                    array('booking' => $booking, 'imgUrl'=> $cid)
+                    array('booking' => $booking, 'cid' => $cid)
                 ),
                 'text/html'
             );

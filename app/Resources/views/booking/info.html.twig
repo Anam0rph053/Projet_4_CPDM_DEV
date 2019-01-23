@@ -2,7 +2,7 @@
 
 {% block body %}
     <div class="container">
-    <h4>Informations Complémentaires</h4>
+    <h4>{% trans %}Informations Complémentaires{% endtrans %}</h4>
         <hr>
 
         {{ form_start(form) }}
@@ -10,21 +10,21 @@
 {% for ticket in form.tickets %}
     <div class="form-row">
         <div class="col">
-            {{ form_row(ticket.lastName, {'label':'Prénom'}) }}
+            {{ form_row(ticket.lastName, {'label':'Prénom'|trans}) }}
         </div>
         <div class="col">
-            {{ form_row(ticket.firstName, {'label':'Nom'}) }}
+            {{ form_row(ticket.firstName, {'label':'Nom'|trans}) }}
         </div>
 
         <div class="col">
-            {{ form_row(ticket.birthDate, {'label':'Date de naissance'}) }}
+            {{ form_row(ticket.birthDate, {'label':'Date de naissance'|trans}) }}
         </div>
         <div class="col">
-            {{ form_row(ticket.country, {'label':'Pays'}) }}
+            {{ form_row(ticket.country, {'label':'Pays'|trans}) }}
         </div>
     </div>
-            {{ form_row(ticket.reducePrice, {'label':'Prix réduit'}) }}
-    <p>* Un justificatif devra être présenter afin de justifier la réduction. </p>
+            {{ form_row(ticket.reducePrice, {'label':'Prix réduit'|trans}) }}
+    <p>* {% trans %}Un justificatif devra être présenté afin de justifier la réduction{% endtrans %}. </p>
         <hr>
 {% endfor %}
 

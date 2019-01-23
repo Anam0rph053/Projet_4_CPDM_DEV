@@ -1,7 +1,7 @@
 <style type="text/css">
     body,
     html,
-    .body {
+    body {
         background: #f3f3f3 !important;
     }
 </style>
@@ -15,8 +15,9 @@
 
     <row>
         <columns>
-            <h1>Billetterie du Louvre</h1>
-            <p>Le musée du Louvre vous remercie pour votre commande</p>
+            <h1><img src="{{ absolute_url(asset('media/logo.png')) }}">Billetterie du Louvre </h1>
+
+            <p>{% trans %}Le musée du Louvre vous remercie pour votre commande{% endtrans %}</p>
 
             <spacer size="16"></spacer>
 
@@ -24,57 +25,57 @@
                 <row>
                     <columns large="6">
                         <p>
-                            <strong>Mode de Paiement</strong><br/>
+                            <strong>{{ 'Mode de Paiement'|trans }}</strong><br/>
                             Carte Bancaire
                         </p>
                         <p>
-                            <strong>Adresse Electronique</strong><br/>
+                            <strong>{{ 'Adresse Electronique'|trans }}</strong><br/>
                             {{ booking.email }}
                         </p>
                         <p>
-                            <strong>Référence de la Commande</strong><br/>
+                            <strong>{{ 'Référence de la Commande' |trans }}</strong><br/>
                             {{ booking.transactionNumber }}
                         </p>
                     </columns>
                 </row>
             </callout>
 
-            <h4>Order Details</h4>
+            <h4>{% trans %}Détail de la Commande{% endtrans %}</h4>
+
+            <p>
+                <strong>{% trans %}Date de visite{% endtrans %}</strong><br/>
+                {{ booking.visitDate|date('d-m-Y') }}
+            </p>
 
             <table>
                 <tr>
-                    <th class="titre-tab">Nom</th>
-                    <th class="titre-tab">Prénom</th>
-                    <th class="titre-tab">Tarif</th>
+                    <th class="titre-tab">{{ 'Nom'|trans }}</th>
+                    <th class="titre-tab">{{ 'Prénom'|trans }}</th>
+                    <th class="titre-tab">{{ 'Tarif'|trans }}</th>
                 </tr>
 
                 {% for ticket in booking.tickets %}
 
                     <tr>
-                        <td class="pt-3-half">{{ ticket.lastName }}</td>
-                        <td class="pt-3-half">{{ ticket.firstName }}</td>
-                        <td class="pt-3-half">{{ ticket.price }} €</td>
+                        <td class="pt-4-half">{{ ticket.lastName }}</td>
+                        <td class="pt-4-half">{{ ticket.firstName }}</td>
+                        <td class="pt-4-half">{{ ticket.price }} €</td>
                     </tr>
-                    <hr/>
-                    <h4> Total Payer : {{ booking.price }} € </h4>
                 {% endfor %}
-
             </table>
-
+            <hr/>
+            <h4> {% trans %}Total Payer{% endtrans %} : {{ booking.price }} € </h4>
             <hr/>
 
-            <h4>Une Questions ? </h4>
+            <h4>{% trans %}Une Questions {% endtrans %}? </h4>
 
-            <p>N'hésiez pas à nous contactez pour tous renseignements</p>
+            <p>{% trans %}Pour tous renseignements{% endtrans %}</p>
         </columns>
     </row>
     <row class="footer text-center">
         <columns large="3">
-            <img src="{{ asset('media/logo.png') }}"/>
-        </columns>
-        <columns large="3">
             <p>
-                Appelez nous au 01 44 00 00 00 <br/>
+                {% trans %}Appelez nous au{% endtrans %} 01 44 00 00 00 <br/>
                 Email : contact_louvre@louvre.fr
             </p>
         </columns>

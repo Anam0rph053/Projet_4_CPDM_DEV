@@ -34,12 +34,12 @@ class Booking
      * @var \DateTime
      *
      * @ORM\Column(name="visitDate", type="datetime")
-     * @Assert\DateTime()
+     * @Assert\DateTime(message="Le format est incorrect.")
      * @MyAssert\NotTuesday()
      * @MyAssert\NotSunday()
      * @MyAssert\BankHolidays()
-     *
-     *
+     * @MyAssert\PastDay()
+
      */
     private $visitDate;
 
@@ -55,7 +55,7 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
-     * @Assert\Email()
+     * @Assert\Email(message="Votre adresse email est incorrect.")
      * @Assert\Length(max=70)
      */
     private $email;
@@ -229,7 +229,7 @@ class Booking
      *
      * @return Booking
      */
-    public function addTicket(\AppBundle\Entity\Ticket $ticket)
+    public function addTicket(Ticket $ticket)
     {
         $this->tickets[] = $ticket;
         $ticket->setBooking($this );
@@ -244,7 +244,7 @@ class Booking
      *
      * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
      */
-    public function removeTicket(\AppBundle\Entity\Ticket $ticket)
+    public function removeTicket(Ticket $ticket)
     {
         return $this->tickets->removeElement($ticket);
     }

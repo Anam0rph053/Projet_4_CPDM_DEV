@@ -10,25 +10,25 @@
                     </div>
                 <div class="header-overlay">
                     <div class="header-content">
-                        <h1>Réservation</h1>
+                        <h1>{% trans %}Réservation{% endtrans %}</h1>
                         {{ form_start(formBooking) }}
 
                         <div class="form-row home">
                             <div class="col">
-                                {{ form_row(formBooking.visitDate, {'label':'Date'}) }}
+                                {{ form_row(formBooking.visitDate, {'label':'Date'|trans}) }}
                             </div>
                             <div class="col">
-                                {{ form_row(formBooking.email, {'label':'Email'}) }}
+                                {{ form_row(formBooking.email, {'label':'Email'|trans}) }}
                             </div>
                             <div class="col">
-                                {{ form_row(formBooking.ticketNumber, {'label':'Quantité'}) }}
+                                {{ form_row(formBooking.ticketNumber, {'label':'Quantité'|trans}) }}
                             </div>
                             <div class="col">
-                                {{ form_row(formBooking.ticketType, {'label':'Type'}) }}
+                                {{ form_row(formBooking.ticketType, {'label':'Type'|trans}) }}
                             </div>
                         </div>
                         <div class="col">
-                            <input type="submit" class="btn btn-primary" value="Valider"input >
+                            <input type="submit" class="btn btn-primary" value="Valider" >
                         </div>
                         {{ form_end(formBooking) }}
                     </div>

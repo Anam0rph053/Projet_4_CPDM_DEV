@@ -2,14 +2,14 @@
 
 {% block body %}
     <div class="container">
-        <h4>Résumé de votre Commande</h4>
+        <h4>{% trans %}Résumé de votre Commande{% endtrans %}</h4>
         <hr>
         <table border="1" class="table table-bordered table-responsive-md table-striped text-center">
             <thead>
             <tr>
-                <th class="titre-tab">Nom</th>
-                <th class="titre-tab">Prénom</th>
-                <th class="titre-tab">Tarifs</th>
+                <th class="titre-tab">{{ 'Nom'|trans }}Nom</th>
+                <th class="titre-tab">{{ 'Prénom'|trans }}</th>
+                <th class="titre-tab">{{ 'Tarifs'|trans }}</th>
             </tr>
             </thead>
 
@@ -25,10 +25,10 @@
         </table>
     <div class="form-row">
         <div class="col">
-            <h4> Total à Payer : {{ booking.price }} € </h4>
+            <h4>{% trans %}Total à Payer {% endtrans %}: {{ booking.price }} € </h4>
         </div>
         <div class="col">
-            <a id="btn" class="btn btn-danger"  href="{{path('info') }}">Modifier</a>
+            <a id="btn" class="btn btn-danger"  href="{{path('info') }}">{{ 'Modifier' |trans}}</a>
         </div>
             <div class="col-md-4 col-md-offset-2">
             <form action="" method="POST">
@@ -49,7 +49,7 @@
                     document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
                 </script>
 
-                <button id="btn"  class="btn btn-danger">Paiement</button>
+                <button id="btn"  class="btn btn-danger">{{ 'Paiement' |trans}}</button>
             </form>
             </div>
 

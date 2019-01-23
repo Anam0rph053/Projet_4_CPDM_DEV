@@ -15,11 +15,12 @@ use AppBundle\Entity\Ticket;
 use AppBundle\Service\Mailer;
 use AppBundle\Service\Payment;
 use AppBundle\Service\PriceCalculator;
+use Symfony\Component\Config\Tests\Util\Validator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\ORM\EntityManagerInterface;
-
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 
 /**
@@ -43,6 +44,7 @@ class BookingManager
      * @var Payment
      */
     private $payment;
+//    private $validator;
 
     /**
      * BookingManager constructor.
@@ -50,14 +52,14 @@ class BookingManager
      * @param PriceCalculator $calculator
      * @param Payment $payment
      */
-    public function __construct(SessionInterface $session, PriceCalculator $calculator, Payment $payment, EntityManagerInterface $entityManager, Mailer $mailer)
+    public function __construct(SessionInterface $session, PriceCalculator $calculator, Payment $payment, EntityManagerInterface $entityManager, Mailer $mailer, ValidatorInterface $validatorInterface)
     {
         $this->session = $session;
         $this->calculator = $calculator;
         $this->payment = $payment;
         $this->em = $entityManager;
         $this->mailer = $mailer;
-
+//        $this->validator = $validatorInterface;
     }
 
     /**
@@ -87,7 +89,11 @@ class BookingManager
 
         if(!$booking instanceof  Booking){
             throw new NotFoundHttpException();
+
         }
+//        if(count($this->validator->validate($booking)) === null) {
+//        throw new NotFoundHttpException();
+//    };
         return $booking;
     }
     public function computeTotalPrice(Booking $booking)

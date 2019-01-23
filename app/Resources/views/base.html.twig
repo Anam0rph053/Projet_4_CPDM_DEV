@@ -18,46 +18,59 @@
 
             <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         {% endblock %}
-
     </head>
-    <body>
+
+    <header>
 
     <div id="myNav" class="overlay">
         <a href="javascript:void(0)" class="closebtn" id="closeNav">&times;</a>
         <div class="overlay-content">
-            <a href="{{ path('home') }}">Accueil</a>
-            <a href="{{ path('infosPratiques') }}">Informations Pratiques</a>
-            <a href="{{ path('contact') }}">Contact</a>
+            <a href="{{ path('home') }}">{{ 'Accueil'|trans }}</a>
+            <a href="{{ path('infosPratiques') }}">{{ 'Informations Pratiques'|trans }}</a>
+            <a href="{{ path('contact') }}">{{ 'Contact'|trans }}</a>
 
 
         </div>
     </div>
 
-    <span class="openNav" id="openNav">&#9776; Billetterie du Louvre</span>
+    <span class="openNav" id="openNav">&#9776; {{ 'Billetterie du Musée du Louvre'|trans }}</span>
         {% block content %}{% endblock %}
+    </header>
 
-        {% block body %}
-            {% for message in app.flashes('notice') %}
-                <div class="flash-notice">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endblock %}
+    <body>
+    {% block body %}
 
-        {% block javascripts %}
-
-            <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-                    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-                    crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-                    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-                    crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-                    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-                    crossorigin="anonymous"></script>
-            <script src="{{ asset('js/style.js') }}"></script>
-        {% endblock %}
+    {% endblock %}
     </body>
+
+    <footer class="py-5 fixed-bottom">
+        {% block footer %}
+
+
+            <div class="container">
+                <p class="m-0 text-center text-white">Ce site n'est pas la Billetterie officielle. Il a été réalisé dans le cadre d'un projet de formation</p>
+                <p class="m-0 text-center text-white">Copyright &copy; Noémie Coplo 2018</p>
+            </div>
+
+        {% endblock %}
+    </footer>
+    {% block javascripts %}
+
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+                integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+                crossorigin="anonymous"></script>
+        <script src="{{ asset('js/style.js') }}"></script>
+    {% endblock %}
+
+
+
+
 </html>

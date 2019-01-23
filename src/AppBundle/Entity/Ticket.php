@@ -26,7 +26,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=255)
-     * @Assert\Length(min=2, max=50)
+     * @Assert\Length(min=2, max=50, minMessage="Le nom doit comporter au minimum {{limit}} caractères.", maxMessage="Le nom ne peut pas comporter plus de {{limit}} caractères." )
      */
     private $lastName;
 
@@ -34,7 +34,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255)
-     * @Assert\Length(min=2,max=50)
+     * @Assert\Length(min=2,max=50,minMessage="Le prénom doit comporter au minimum {{limit}} caractères.", maxMessage="Le prénom ne peut pas comporter plus de {{limit}} caractères.")
      */
     private $firstName;
 
@@ -42,7 +42,7 @@ class Ticket
      * @var \DateTime
      *
      * @ORM\Column(name="birthDate", type="date")
-     * @Assert\DateTime()
+     * @Assert\DateTime(message="Le format est incorrect.")
      */
     private $birthDate;
 
@@ -50,7 +50,7 @@ class Ticket
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
-     * @Assert\Type(type="string")
+     * @Assert\Type(type="string", message="Erreur, merci de sélectionner votre pays")
      */
     private $country;
 
@@ -215,7 +215,7 @@ class Ticket
     }
 
     /**
-     * @param int $totalPrice
+     * @param $price
      */
     public function setPrice($price)
     {
@@ -229,8 +229,9 @@ class Ticket
      *
      * @return Ticket
      */
-    public function setBooking(\AppBundle\Entity\Booking $booking)
+    public function setBooking(Booking $booking)
     {
+
         $this->booking = $booking;
 
         return $this;

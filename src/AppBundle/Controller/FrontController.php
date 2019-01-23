@@ -2,26 +2,23 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Contact;
-use AppBundle\Entity\Ticket;
+
 use AppBundle\Form\BookingTicketsType;
 use AppBundle\Form\BookingType;
 use AppBundle\Form\ContactType;
-use AppBundle\Form\TicketType;
 use AppBundle\Manager\BookingManager;
-use AppBundle\Service\Mailer;
-use AppBundle\Service\PriceCalculator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use AppBundle\Entity\Booking;
 
 
 class FrontController extends Controller
 {
     /**
      * @Route("/", name="home")
+     * @param Request $request
+     * @param BookingManager $bookingManager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function homeAction(Request $request, BookingManager $bookingManager)
     {
@@ -47,6 +44,9 @@ class FrontController extends Controller
 
     /**
      * @Route("/info", name="info")
+     * @param Request $request
+     * @param BookingManager $bookingManager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function infoAction(Request $request, BookingManager $bookingManager)
     {
@@ -71,7 +71,9 @@ class FrontController extends Controller
 
     /**
      * @Route("/recap", name="recap")
-     *
+     * @param Request $request
+     * @param BookingManager $bookingManager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function recapAction(Request $request, BookingManager $bookingManager)
     {
@@ -79,7 +81,6 @@ class FrontController extends Controller
         $booking = $bookingManager->getCurrentBooking();
         if ($request->isMethod('POST')) {
 
-            try {
                 if ($bookingManager->payment($booking)) {
                     return $this->redirectToRoute('confirm');
 
@@ -94,10 +95,6 @@ class FrontController extends Controller
                         )
                     );
                 }
-            } catch (\Twig_Error_Loader $e) {
-            } catch (\Twig_Error_Runtime $e) {
-            } catch (\Twig_Error_Syntax $e) {
-            }
         }
 
         return $this->render('/booking/recap.html.twig', array(
@@ -108,6 +105,8 @@ class FrontController extends Controller
 
     /**
      * @Route("/confirm", name="confirm")
+     * @param BookingManager $bookingManager
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function confirmAction(BookingManager $bookingManager)
     {
@@ -131,6 +130,8 @@ class FrontController extends Controller
 
     /**
      * @Route("/confirm_contact", name="confirmContact")
+     * @param BookingManager $bookingManager
+     * @return \Symfony\Component\HttpFoundation\Response
      */
 
     public function confirmContactAction(BookingManager $bookingManager)
@@ -139,8 +140,12 @@ class FrontController extends Controller
 
         return $this->render('contact/confirmContact.html.twig');
     }
+
     /**
      * @Route("/contact", name="contact")
+     * @param Request $request
+     * @param BookingManager $bookingManager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function contactAction(Request $request, BookingManager $bookingManager)
     {

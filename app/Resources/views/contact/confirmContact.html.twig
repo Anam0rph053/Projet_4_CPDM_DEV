@@ -4,10 +4,10 @@
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4">Confirmation de Commande</h1>
-            <p class="lead">Félicitation votre message à bien été envoyé</p><br/>
-            <p>Nous mettons tout en oeuvre pour vous apporter une réponse dans les 48 heures</p>
-            <a href="{{ path('home') }}">Retour à la page d'Accueil</a>
+            <h1 class="display-4">{% trans %}Confirmation de demande de Contact{% endtrans %}</h1>
+            <p class="lead">{% trans %}Félicitation votre message à bien été envoyé{% endtrans %}</p><br/>
+            <p>{% trans %}Nous mettons tout en oeuvre pour vous apporter une réponse dans les 48 heures{% endtrans %}</p>
+            <a href="{{ path('home') }}">{% trans %}Retour à la page d'Accueil{% endtrans %}</a>
         </div>
     </div>
 

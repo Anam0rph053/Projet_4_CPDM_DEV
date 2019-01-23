@@ -27,7 +27,9 @@ body{
 p, label, a ,th, td, tr, .form-control, .btn  {
     font-family: 'fontastique', serif;
 }
-
+h4{
+    text-align: center;
+}
 /***BGVIDEO***/
 *, *:before, *:after {
     margin: auto;
@@ -52,7 +54,7 @@ p, label, a ,th, td, tr, .form-control, .btn  {
 }
 
 .fullscreen-video-wrap{
-    margin-top: 50px;
+
     position: absolute;
     top: 0;
     left: 0;
@@ -84,6 +86,7 @@ p, label, a ,th, td, tr, .form-control, .btn  {
 
 .header-content h1{
     font-size: 50px;
+    padding:20px;
     margin-bottom: 0;
 
 }
@@ -108,9 +111,11 @@ p, label, a ,th, td, tr, .form-control, .btn  {
         padding-top:0;
 
     }
-
+    .resa{
+        color:black;
+    }
     .header-content{
-        margin-top:50%;
+        margin-top:30%;
 
     }
     .fullscreen-video-wrap video{
@@ -211,8 +216,12 @@ span.openNav{
     flex-direction: row;
     justify-content: center;
 }
+.fa, .fas {
+    font-weight: 900;
+    padding-right: 10px;
+}
 
-#breadcrumbs {
+.breadcrumbs {
     text-align: center;
     padding-bottom:50px;
     display:flex;
@@ -220,80 +229,94 @@ span.openNav{
     justify-content: center;
 }
 
-#breadcrumbs ul {
+.breadcrumbs ul {
     list-style: none;
     display: inline-flex;
 }
-#breadcrumbs ul li {
+.breadcrumbs ul li {
     display: inline-flex;
 }
-#breadcrumbs ul li a {
-    display: block;
-    float: left;
-    height: 80px;
+li {
     background: #771FA7;
+}
+.breadcrumbs ul li a {
+    display: block;
+
+    float: left;
+    height: 60px;
     text-align: center;
-    padding: 30px 20px 0 60px;
+    padding: 20px 20px 0 60px;
     position: relative;
-    margin: 0 6px 0 0;
+    margin: 0 3px 0 0;
     font-size: 16px;
     text-decoration: none;
     color: #fafafa;
 
 }
-#breadcrumbs ul li a:after {
+li.active a:after {
+    border-left: 30px solid #1abc9c;
+}
+li a:after{
+    border-left: 30px solid #771FA7;
+
+}
+.breadcrumbs  li a:after {
     content: "";
-    border-top: 40px solid transparent;
-    border-bottom: 40px solid transparent;
-    border-left: 40px solid #771FA7;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
     position: absolute;
-    right: -40px;
+    right: -30px;
     top: 0;
     z-index: 1;
 }
-#breadcrumbs ul li a:before {
+.breadcrumbs ul li a:before {
     content: "";
-    border-top: 40px solid transparent;
-    border-bottom: 40px solid transparent;
-    border-left: 40px solid #fafafa;
+    border-top: 30px solid transparent;
+    border-bottom: 30px solid transparent;
+    border-left: 30px solid #fafafa;
     position: absolute;
-    left: 0px;
+    left: 0;
     top: 0;
 }
 
-#breadcrumbs ul li:first-child a {
+/*ul li:first-child a{*/
+    /*border-top-left-radius: 10px;*/
+    /*border-bottom-left-radius: 10px;*/
+/*}*/
+ li:first-child {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
 }
 
-#breadcrumbs ul li:first-child a:before {
+.breadcrumbs ul li:first-child a:before {
     display: none;
 
 }
 
-#breadcrumbs ul li:last-child a {
-    padding-right: 40px;
+li:last-child {
+    padding-right: 20px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
-#breadcrumbs ul li:last-child a:after {
+.breadcrumbs ul li:last-child a:after {
     display: none;
 }
 
-#breadcrumbs ul li a:hover {
+.breadcrumbs ul li a.active {
     background-color: #1abc9c;
     color: #fff;
 }
 
-#breadcrumbs ul li a:hover:after {
+.breadcrumbs ul li a.active:after {
     border-left-color: #1abc9c;
     color: #fff;
 }
- .active{
+.breadcrumbs ul li a.active:after{
     background: #1abc9c;
 
 }
+
 *, *:before, *:after {
     margin: 0;
     padding: 0;
@@ -328,12 +351,37 @@ span.openNav{
     .title_crumbs {
         display:none;
     }
-    #breadcrumbs ul li a
+    .breadcrumbs ul li a
     {
-    padding: 30px 10px 10px 50px;
+        height:40px;
+        padding: 10px 10px 0 40px;
+    }
+    .breadcrumbs ul li a:after{
+        content: "";
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+        border-left: 20px solid #771FA7;
+        position: absolute;
+        right: -20px;
+        top: 0;
+        z-index: 1;
+    }
+    .breadcrumbs ul li a:before {
+        content: "";
+        border-top: 20px solid transparent;
+        border-bottom: 20px solid transparent;
+        border-left: 20px solid #fafafa;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    .breadcrumbs{
+        padding-bottom: 10px;
     }
 }
-
+li.active {
+    background-color: #1abc9c;
+}
 
 /******BUTTON*****/
 .btn{
@@ -347,12 +395,6 @@ span.openNav{
 
 }
 
-
-/****JUMBOTRON***/
-
-.jumbotron {
- margin-top:50px;
-}
 
 /******** ERROR 404 *********/
 body {
@@ -401,8 +443,8 @@ body {
     width: 100%;
     height: 600px;
     background-color: rgba(255, 255, 255, 0.7);
-    -webkit-box-shadow: 0px 0px 0px 30px rgba(255, 255, 255, 0.7) inset;
-    box-shadow: 0px 0px 0px 30px rgba(255, 255, 255, 0.7) inset;
+    -webkit-box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.7) inset;
+    box-shadow: 0 0 0 30px rgba(255, 255, 255, 0.7) inset;
     z-index: -1;
 }
 
@@ -428,7 +470,7 @@ body {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     font-size: 220px;
-    margin: 0px;
+    margin: 0;
     color: #222225;
     text-transform: uppercase;
 }
@@ -475,4 +517,15 @@ body {
 }
 hr{
     padding:20px;
+}
+/******FOOTER****/
+.py-5{
+    background-color: #771FA7;
+    padding-top:1rem!important;
+    padding-bottom:1rem!important;
+}
+/******INFO PRATIQUES****/
+
+.conditions{
+    margin-bottom: 5rem;
 }

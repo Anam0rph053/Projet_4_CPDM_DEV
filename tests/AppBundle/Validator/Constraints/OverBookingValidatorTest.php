@@ -18,10 +18,12 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 class OverBookingValidatorTest extends ValidatorTestAbstract
 {
+//    const OVERBOOKING = 1000;
     /**
      * @var EntityManagerInterface
      */
     private $em;
+
 
     public function setUp()
     {

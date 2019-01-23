@@ -2,59 +2,58 @@
 
 {% block body %}
 <div class="container">
-    <h1>Informations Pratiques</h1>
+    <h1>{% trans %}Informations Pratiques{% endtrans %}</h1>
     <hr>
-    <h3>Coordonnées du musée du Louvre</h3><br/>
-    <p>Musée du Louvre</p>
+    <h3>{% trans %}Coordonnées du Musée du Louvre{% endtrans %}</h3><br/>
     <p>91A avenue Rivoli</p>
     <p>75001 Paris</p>
     <p>01 44 00 00 00</p>
     <p>contact_louvre@louvre.fr</p><br/>
 
-    <h3>Horaires et Jours de Visite</h3><br/>
-    <p>Notre Musée est ouvert les lundis, mercredi, jeudi et Samedi de 9h00 à 18h00.</p>
-    <p>Attention nous sommes fermé les mardis, dimanches et jours fériés</p><br/>
+    <h3>{% trans %}Horaires et jours d'ouverture{% endtrans %}</h3><br/>
 
-    <h3>Tarifs</h3><br/>
+    <p>{% trans %}Notre Musée est ouvert tous les jours de 9h00 à 18h00, sauf le mardi, le dimanche et les jours fériés{% endtrans %}</p><br/>
+
+    <h3>{% trans %}Tarifs{% endtrans %}</h3><br/>
 
     <div class="table-responsive text-nowrap">
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">Type</th>
-                <th scope="col">Catégories</th>
-                <th scope="col">tarifs</th>
+                <th scope="col">{{ 'Type'|trans }}</th>
+                <th scope="col">{{ 'Catégories'|trans }}</th>
+                <th scope="col">{{ 'Tarifs'|trans }}</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <th scope="row">Normal</th>
+                <th scope="row">{{ 'Normal'|trans }}</th>
                 <td> 12 ans et + </td>
                 <td>16 € </td>
             </tr>
             <tr>
-                <th scope="row">Enfant</th>
+                <th scope="row">{{ 'Enfant'|trans }}</th>
                 <td>De 4 à 12 ans</td>
                 <td>8 €</td>
             </tr>
             <tr>
-                <th scope="row">Sénior</th>
+                <th scope="row">{{ 'Séniors'|trans }}</th>
                 <td>60 ans et +</td>
                 <td>12 €</td>
             </tr>
             <tr>
-                <th scope="row">Réduit</th>
+                <th scope="row">{{ 'Réduit'|trans }}</th>
                 <td>*</td>
                 <td>10 €</td>
             </tr>
             <tr>
-                <th scope="row">Gratuit</th>
+                <th scope="row">{{ 'Gratuit'|trans }}</th>
                 <td>- de 4 ans</td>
                 <td>0 €</td>
             </tr>
             </tbody>
         </table>
-        <p>* étudiants, chômeurs, employée du ministère de la culture, employée du musée, militaires...</p>
+        <p class="conditions">* {% trans %}étudiants, chômeurs, employée du ministère de la culture, employée du musée, militaires{% endtrans %}...</p>
     </div>
 </div>
 

@@ -5,10 +5,10 @@
 
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4">Confirmation de Commande</h1>
-            <p class="lead">Félicitation votre commande n° :  {{ booking.transactionNumber }} a bien été passée.</p><br/>
-            <p>Un email de comfirmation vous à été envoyer à l'adresse suivante : {{ booking.email }}</p>
-            <a href="{{ path('home') }}">Retour à la page d'Accueil</a>
+            <h1 class="display-4">{% trans %}Confirmation de Commande{% endtrans %}</h1>
+            <p class="lead">{% trans %}Félicitation votre commande {% endtrans %}n° :  {{ booking.transactionNumber }} a bien été passée.</p><br/>
+            <p>{% trans %}Un email de comfirmation vous à été envoyé à l'adresse suivante {% endtrans %} : {{ booking.email }}</p>
+            <a href="{{ path('home') }}">{% trans %}Retour à la page d'Accueil{% endtrans %}</a>
         </div>
     </div>
 {% endblock%}
