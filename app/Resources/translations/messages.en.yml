@@ -1,4 +1,4 @@
-Billeterie du Louvre : Louvre's ticketing Service
+Billetterie du Musée du Louvre: Louvre's ticketing Service
 Réservation: Booking
 Date: Date
 Quantité: Quantity
@@ -7,7 +7,7 @@ Billet Demi Journée : Half Day
 Accueil: Home
 Informations Pratiques: Practical Informations
 Valider: Submit
-Informations Complémentaires:
+Informations Complémentaires: Complementary Information
 Prénom: First Name
 Nom: Last Name
 Date de naissance: BirthDate
@@ -18,6 +18,7 @@ Résumé: Summary
 Paiement: Payment
 Tarifs: Prices
 Total à Payer: Total to be Paid
+Total Payé: Total Paid
 Modifier: Modify
 Résumé de votre Commande:  Order Summary
 Confirmation de Commande: Order Confirmation
@@ -40,11 +41,19 @@ Contactez-moi: Contact me
 Confirmation de demande de Contact:  Confirmation for your contact request
 Félicitation votre message à bien été envoyé: Congrats !  your message has been send
 Nous mettons tout en oeuvre pour vous apporter une réponse dans les 48 heures: Every effort has been taken to reply to you  in the 48h
-Une question: One Question
-Appelez nous: Call us
+Une Question: One Question
+Pour tous renseignements: For every informations
+Appelez nous au: Call us
 Date de visite: Visit Date
-Détails de la commande: Order Details
-Mode de paiement: payment method
-Référence de la commande: command reference
+Détail de la Commande: Order Details
+Mode de Paiement: payment method
+Référence de la Commande: command reference
 Le musée du Louvre vous remercie pour votre commande: Thank you for your order
 Envoyer: send
+Email: Email
+Type: Type
+Tickets: Tickets
+Tarif: Price
+Contact: Contact
+Ce site n'est pas la Billetterie officielle. Il a été réalisé dans le cadre d'un projet de formation : This site is not the official ticketing service of Louvre's Museum. This is a training project.
+Un email de comfirmation vous à été envoyé à l'adresse suivante : A comfirmation email has been sent to the following address

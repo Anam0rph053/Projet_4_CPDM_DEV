@@ -59,7 +59,7 @@ class BookingManager
         $this->payment = $payment;
         $this->em = $entityManager;
         $this->mailer = $mailer;
-//        $this->validator = $validatorInterface;
+        $this->validator = $validatorInterface;
     }
 
     /**
@@ -83,19 +83,20 @@ class BookingManager
         }
     }
 
-    public function getCurrentBooking()
+    public function getCurrentBooking($groups = [])
     {
         $booking = $this->session->get(self::SESSION_BOOKING_KEY);
 
-        if(!$booking instanceof  Booking){
+        if (!$booking instanceof Booking) {
             throw new NotFoundHttpException();
 
         }
-//        if(count($this->validator->validate($booking)) === null) {
-//        throw new NotFoundHttpException();
-//    };
+        if (count($this->validator->validate($booking,null,$groups)) > 0) {
+            throw new NotFoundHttpException();
+        };
         return $booking;
     }
+
     public function computeTotalPrice(Booking $booking)
     {
         $this->calculator->computePrice($booking);
@@ -111,7 +112,7 @@ class BookingManager
      */
     public function payment(Booking $booking)
     {
-        if($this->payment->doPayment($booking->getPrice(),"Votre Commande")){
+        if ($this->payment->doPayment($booking->getPrice(), "Votre Commande")) {
             $booking->setTransactionNumber(uniqid());
             $this->mailer->sendEmail($booking);
             $this->em->persist($booking);
@@ -129,12 +130,13 @@ class BookingManager
         $this->session->remove('booking');
 
     }
+
     /**
-    * @throws \Twig_Error_Loader
-    * @throws \Twig_Error_Runtime
-    * @throws \Twig_Error_Syntax
-    */
-    public function contact( Contact $contact)
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function contact(Contact $contact)
     {
         $this->mailer->sendMessage($contact);
         $this->em->persist($contact);

@@ -10,19 +10,27 @@ namespace Tests\AppBundle\Validator\Constraints;
 
 
 use AppBundle\Manager\BookingManager;
+use AppBundle\Repository\BookingRepository;
 use AppBundle\Validator\Constraints\OverBooking;
 use AppBundle\Validator\Constraints\OverBookingValidator;
 use AppBundle\Entity\Booking;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\DocBlock\Tags\Method;
+use PHPUnit_Framework_MockObject_MockObject;
 use Symfony\Component\Validator\ConstraintValidator;
 
 class OverBookingValidatorTest extends ValidatorTestAbstract
 {
 //    const OVERBOOKING = 1000;
     /**
-     * @var EntityManagerInterface
+     * @var EntityManagerInterface|PHPUnit_Framework_MockObject_MockObject
      */
     private $em;
+
+    /**
+     * @var BookingRepository|PHPUnit_Framework_MockObject_MockObject
+     */
+    private $bookingRepo;
 
 
     public function setUp()
@@ -31,6 +39,10 @@ class OverBookingValidatorTest extends ValidatorTestAbstract
             ->getMockBuilder(EntityManagerInterface::class)
             ->disableOriginalConstructor()
             ->getMock();
+        $this->bookingRepo = $this->getMockBuilder(BookingRepository::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $this->em->expects($this->once())->method('getRepository')->willReturn($this->bookingRepo);
     }
 
     /**
@@ -47,17 +59,28 @@ class OverBookingValidatorTest extends ValidatorTestAbstract
     public function testOverBookingValidatorKO()
     {
         $OverBookingConstraint = new OverBooking();
+        $booking = new Booking();
+        $booking->setVisitDate(new \DateTime());
+        $booking->setTicketNumber(501);
 
-        $OverBookingValidator = $this->initValidator();
-        $OverBookingValidator->validate(4,$OverBookingConstraint);
+        $this->bookingRepo->expects($this->once())->method('overbooking')->willReturn(500);
+
+        $OverBookingValidator = $this->initValidator($OverBookingConstraint->message);
+        $OverBookingValidator->validate($booking,$OverBookingConstraint);
     }
 
-//    public function testOverBookingValidatorOK()
-//    {
-//        $OverBookingConstraint = new OverBooking();
-//
-//        $OverBookingValidator = $this->initValidator($OverBookingConstraint->message);
-//        $OverBookingValidator->validate(1004,$OverBookingConstraint);
-//    }
+    public function testOverBookingValidatorOK()
+    {
+
+        $this->bookingRepo->expects($this->once())->method('overbooking')->willReturn(500);
+
+        $OverBookingConstraint = new OverBooking();
+        $booking = new Booking();
+        $booking->setVisitDate(new \DateTime());
+        $booking->setTicketNumber(499);
+
+        $OverBookingValidator = $this->initValidator();
+        $OverBookingValidator->validate($booking,$OverBookingConstraint);
+    }
 
 }

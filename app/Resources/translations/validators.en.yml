@@ -1,0 +1,13 @@
+Le format est incorrect: Invalid form
+Votre adresse email est incorrect: Invalid Email form
+Le nom doit comporter au minimum 2 caractères: The last name must have a minimum of 2 characters
+Le nom ne peut pas comporter plus de 50 caractères: The last name cannot include more than 50 characters
+Le prénom doit comporter au minimum 2 caractères: The first name must have a minimum of 2 characters
+Le prénom ne peut pas comporter plus de 50 caractères: The first name cannot include more than 50 characters
+Vous ne pouvez pas réserver un jour férié: You cannot book a Bank holiday
+Vous ne pouvez pas réserver un billet journée passé 14h: You can’t book a ticket past 14:00 pm
+Vous ne pouvez pas réserver un Dimanche: You can’t book a ticket on a Sunday
+Vous ne pouvez pas réserver un mardi: You can’t book a ticket on a Tuesday
+billets épuisés: Exhausted tickets
+Vous ne pouvez pas réserver un jour passé: You can’t book a past day
+Veuillez compléter ce champ: Please complete this field

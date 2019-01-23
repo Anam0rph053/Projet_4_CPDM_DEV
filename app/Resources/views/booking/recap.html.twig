@@ -1,5 +1,10 @@
 {% extends 'layout_workFlow.html.twig' %}
 
+{% block content %}
+    {% set step = 3 %}
+    {{ parent() }}
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <h4>{% trans %}Résumé de votre Commande{% endtrans %}</h4>

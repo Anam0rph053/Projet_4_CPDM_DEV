@@ -10,7 +10,9 @@
                     </div>
                 <div class="header-overlay">
                     <div class="header-content">
+
                         <h1>{% trans %}Réservation{% endtrans %}</h1>
+
                         {{ form_start(formBooking) }}
 
                         <div class="form-row home">
@@ -28,7 +30,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <input type="submit" class="btn btn-primary" value="Valider" >
+                            <input type="submit" class="btn btn-primary" value="{% trans %}Valider{% endtrans %}" >
                         </div>
                         {{ form_end(formBooking) }}
                     </div>

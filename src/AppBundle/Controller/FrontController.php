@@ -51,7 +51,7 @@ class FrontController extends Controller
     public function infoAction(Request $request, BookingManager $bookingManager)
     {
 
-        $booking = $bookingManager->getCurrentBooking();
+        $booking = $bookingManager->getCurrentBooking(['booking_init']);
 
         $form = $this->createForm(BookingTicketsType::class, $booking);
         $form->handleRequest($request);
@@ -78,9 +78,10 @@ class FrontController extends Controller
     public function recapAction(Request $request, BookingManager $bookingManager)
     {
 
-        $booking = $bookingManager->getCurrentBooking();
+        $booking = $bookingManager->getCurrentBooking(['tickets_filled']);
         if ($request->isMethod('POST')) {
 
+            try {
                 if ($bookingManager->payment($booking)) {
                     return $this->redirectToRoute('confirm');
 
@@ -95,6 +96,10 @@ class FrontController extends Controller
                         )
                     );
                 }
+            } catch (\Twig_Error_Loader $e) {
+            } catch (\Twig_Error_Runtime $e) {
+            } catch (\Twig_Error_Syntax $e) {
+            }
         }
 
         return $this->render('/booking/recap.html.twig', array(
@@ -111,7 +116,7 @@ class FrontController extends Controller
     public function confirmAction(BookingManager $bookingManager)
     {
 
-        $booking = $bookingManager->getCurrentBooking();
+        $booking = $bookingManager->getCurrentBooking(['tickets_filled']);
 
         $bookingManager->clearFunction();
 

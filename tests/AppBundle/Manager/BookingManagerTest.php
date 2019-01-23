@@ -18,6 +18,7 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class BookingManagerTest extends TestCase
 {
@@ -48,6 +49,11 @@ class BookingManagerTest extends TestCase
      */
     private $bookingManager;
 
+    /**
+     * @var ValidatorInterface
+     */
+    private $validator;
+
     public function setUp()
     {
         $this->session = new Session(new MockArraySessionStorage());
@@ -73,6 +79,11 @@ class BookingManagerTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
+        $this->validator = $this
+            ->getMockBuilder(ValidatorInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
 
 
         $this->bookingManager = new BookingManager(
@@ -80,7 +91,9 @@ class BookingManagerTest extends TestCase
             $this->calculator,
             $this->payment,
             $this->em,
-            $this->mailer
+            $this->mailer,
+            $this->validator
+
         );
     }
 

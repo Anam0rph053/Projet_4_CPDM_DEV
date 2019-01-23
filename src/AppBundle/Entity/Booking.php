@@ -35,10 +35,11 @@ class Booking
      *
      * @ORM\Column(name="visitDate", type="datetime")
      * @Assert\DateTime(message="Le format est incorrect.")
-     * @MyAssert\NotTuesday()
-     * @MyAssert\NotSunday()
-     * @MyAssert\BankHolidays()
-     * @MyAssert\PastDay()
+     * @Assert\NotBlank(groups={"booking_init"}, message="Veuillez compléter ce champs")
+     * @MyAssert\NotTuesday(groups={"booking_init"})
+     * @MyAssert\NotSunday(groups={"booking_init"})
+     * @MyAssert\BankHolidays(groups={"booking_init"})
+     * @MyAssert\PastDay(groups={"booking_init"})
 
      */
     private $visitDate;
@@ -47,7 +48,8 @@ class Booking
      * @var int
      *
      * @ORM\Column(name="ticketNumber", type="integer")
-     * @Assert\Type(type="integer")
+     * @Assert\Type(type="integer",groups={"booking_init"})
+     * @Assert\NotBlank(groups={"booking_init"})
      */
     private $ticketNumber;
 
@@ -55,8 +57,9 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
-     * @Assert\Email(message="Votre adresse email est incorrect.")
-     * @Assert\Length(max=70)
+     * @Assert\NotBlank(groups={"booking_init"}, message="Veuillez compléter ce champs")
+     * @Assert\Email(groups={"booking_init"},message="Votre adresse email est incorrect")
+     * @Assert\Length(groups={"booking_init"},max=70)
      */
     private $email;
 
@@ -64,6 +67,7 @@ class Booking
      * @var string
      *
      * @ORM\Column(name="ticketType", type="string", length=255)
+     * @Assert\NotBlank(groups={"booking_init"}, message="Veuillez compléter ce champs")
      */
     private $ticketType;
 
@@ -77,6 +81,7 @@ class Booking
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Ticket", mappedBy="booking", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid(groups={"tickets_filled"})
      */
     private $tickets;
 

@@ -31,13 +31,13 @@ class FrontControllerTest extends WebTestCase
     public function urlProvider()
     {
         return [
-            ['/', 200],
-            ['/info', 404],
-            ['/recap', 404],
-            ['/confirm', 404],
-            ['/infosPratiques', 200],
-            ['/confirm_contact', 200],
-            ['/contact', 200],
+            ['/fr/', 200],
+            ['/fr/info', 404],
+            ['/fr/recap', 404],
+            ['/fr/confirm', 404],
+            ['/fr/infosPratiques', 200],
+            ['/fr/confirm_contact', 200],
+            ['/fr/contact', 200],
         ];
     }
 
@@ -49,7 +49,7 @@ class FrontControllerTest extends WebTestCase
         //Test VISITE
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', '/fr/');
 
         $form = $crawler->selectButton('Valider')->form();
         $form['appbundle_booking[visitDate]'] = '2019-02-13';
@@ -64,7 +64,7 @@ class FrontControllerTest extends WebTestCase
         $this->assertSame(1, $crawler->filter('html:contains("Réservation")')->count());
 
         //TEST INFO
-        $crawler = $client->request('GET', '/info');
+        $crawler = $client->request('GET', '/fr/info');
 
         $form = $crawler->selectButton('Valider')->form();
         $form['appbundle_booking_tickets[tickets][0][lastName]'] = 'toto';
@@ -82,7 +82,7 @@ class FrontControllerTest extends WebTestCase
         $this->assertSame(1, $crawler->filter('label:contains("Pays")')->count());
 
         //TEST RECAP
-        $crawler = $client->request('GET', '/recap');
+        $crawler = $client->request('GET', '/fr/recap');
 
         $this->assertSame(1, $crawler->filter('html:contains("Nom")')->count());
         $this->assertSame(1, $crawler->filter('html:contains("Prénom")')->count());

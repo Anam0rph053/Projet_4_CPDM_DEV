@@ -279,10 +279,6 @@ li a:after{
     top: 0;
 }
 
-/*ul li:first-child a{*/
-    /*border-top-left-radius: 10px;*/
-    /*border-bottom-left-radius: 10px;*/
-/*}*/
  li:first-child {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -315,6 +311,9 @@ li:last-child {
 .breadcrumbs ul li a.active:after{
     background: #1abc9c;
 
+}
+a:not([href]):not([tabindex]) {
+    color: white;
 }
 
 *, *:before, *:after {
