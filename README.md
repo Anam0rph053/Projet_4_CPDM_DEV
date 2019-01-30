@@ -12,7 +12,7 @@ $ cd projects.
 $ git clone https://github.com/Anam0rph053/Projet_4_CPDM_DEV.git
 
 #installer les dépendances
-cd my_project_name/
+$ cd my_project_name/
 $ composer install
 
 #Mettre en place la Base de données
