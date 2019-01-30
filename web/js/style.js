@@ -8,8 +8,8 @@ function openNav(){
 
 $(function () {
 
-    $('#openNav').click(openNav);
-    $('#closeNav').click(closeNav);
+    $("#openNav").click(openNav);
+    $("#closeNav").click(closeNav);
 });
 
 $(function(){

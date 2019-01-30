@@ -139,10 +139,10 @@ h4{
         width:100%;
     }
     .col {
-        flex-basis: auto !important;
+        flex-basis: auto ;
     }
     label{
-        color:black !important;
+        color:black;
     }
 }
 /********MENU********/
@@ -195,7 +195,7 @@ section{
 }
 span.openNav{
     font-family:'fontastique',serif;
-    font-size:60px !important;
+    font-size:60px ;
     padding:20px;
     cursor:pointer
 }
@@ -209,7 +209,7 @@ span.openNav{
         right: 35px;
     }
     span.openNav{
-        font-size: 20px!important;
+        font-size: 20px;
     }
 
 
@@ -217,7 +217,7 @@ span.openNav{
 @media screen and (max-width: 767px) {
 
     span.openNav{
-        font-size: 27px!important;
+        font-size: 27px;
     }
 }
 /**********BREADCRUMBS******/
