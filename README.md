@@ -1,6 +1,6 @@
 Projet 4 : Réalisation d'une billetterie pour le Musée du Louvre
 =======
-A Symfony project created on November 18, 2018, 4:52 pm.
+
 Installation
 ------------
 ```bash
