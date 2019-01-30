@@ -9,7 +9,7 @@
     <div class="container">
     <h4>{% trans %}Informations Complémentaires{% endtrans %}</h4>
         <hr>
-
+    <div class="info-content">
         {{ form_start(form) }}
 
 {% for ticket in form.tickets %}
@@ -37,7 +37,7 @@
             <input type="submit" class="btn btn-primary" value="{% trans %}Valider{% endtrans %}">
         </div>
         {{ form_end(form) }}
-
+    </div>
 </div>
 
 {% endblock %}

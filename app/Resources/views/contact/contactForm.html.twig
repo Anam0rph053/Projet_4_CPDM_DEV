@@ -3,39 +3,42 @@
     <div class="container">
         <h4>Contactez - Nous</h4>
         <hr>
-        <div class="form_row">
-            {{ form_start(formContact) }}
-            <div class="col">
-                <div>
-                    {{ form_row(formContact.lastName, {'label':'Prénom'}) }}
+        <div class="contact-content">
+            <div class="form_row">
+                {{ form_start(formContact) }}
+                <div class="col">
+                    <div>
+                        {{ form_row(formContact.lastName, {'label':'Prénom'}) }}
 
+                    </div>
+                    <div>
+                        {{ form_row(formContact.firstName, {'label':'Nom'}) }}
+
+                    </div>
                 </div>
-                <div>
-                    {{ form_row(formContact.firstName, {'label':'Nom'}) }}
+                <div class="col">
+                    <div>
+                        {{ form_row(formContact.email, {'label':'Adresse Electronique'}) }}
 
+                    </div>
+                </div>
+                <div class="col">
+                    <div>
+                        {{ form_row(formContact.object, {'label':'Objet du message'}) }}
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div>
+                        {{ form_row(formContact.message, {'label':'Message'}) }}
+
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <div>
-                    {{ form_row(formContact.email, {'label':'Adresse Electronique'}) }}
+            <input type="submit" class="btn btn-primary center" value="{% trans %}Envoyer{% endtrans %}">
+            {{ form_end(formContact) }}
 
-                </div>
-            </div>
-            <div class="col">
-                <div>
-                    {{ form_row(formContact.object, {'label':'Objet du message'}) }}
-
-                </div>
-            </div>
-            <div class="col">
-                <div>
-                    {{ form_row(formContact.message, {'label':'Message'}) }}
-
-                </div>
-            </div>
         </div>
-        <input type="submit" class="btn btn-primary center" value="{% trans %}Envoyer{% endtrans %}">
-        {{ form_end(formContact) }}
+        </div>
 
-    </div>
 {% endblock %}

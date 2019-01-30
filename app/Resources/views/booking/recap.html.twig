@@ -12,7 +12,7 @@
         <table border="1" class="table table-bordered table-responsive-md table-striped text-center">
             <thead>
             <tr>
-                <th class="titre-tab">{{ 'Nom'|trans }}Nom</th>
+                <th class="titre-tab">{{ 'Nom'|trans }}</th>
                 <th class="titre-tab">{{ 'Prénom'|trans }}</th>
                 <th class="titre-tab">{{ 'Tarifs'|trans }}</th>
             </tr>
@@ -44,7 +44,7 @@
                         data-amount="{{ booking.price * 100 }}"
                         data-name="Billetterie du Louvre"
                         data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                        data-locale="auto"
+                        data-locale="{{ app.request.locale }}"
                         data-currency="eur"
                         data-zip-code="false"
                         data-email="{{ booking.email }}">

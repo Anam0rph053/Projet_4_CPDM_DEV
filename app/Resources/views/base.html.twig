@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ app.request.locale }}">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,12 +28,16 @@
             <a href="{{ path('home') }}">{{ 'Accueil'|trans }}</a>
             <a href="{{ path('infosPratiques') }}">{{ 'Informations Pratiques'|trans }}</a>
             <a href="{{ path('contact') }}">{{ 'Contact'|trans }}</a>
+            <a href="{{ path(app.request.attributes.get('_route'),{_locale: 'fr'}) }}"><img
+                        src="{{ asset('media/fr.png') }}" alt="frenchflag"></a>
 
+            <a href="{{ path(app.request.attributes.get('_route'),{_locale: 'en'}) }}"><img
+                        src="{{ asset('media/en.png') }}" alt="britishflag"></a>
 
         </div>
     </div>
 
-    <span class="openNav" id="openNav">&#9776; {{ 'Billetterie du Musée du Louvre'|trans }}</span>
+    <span class="openNav" id="openNav">&#9776; {{ 'Billetterie du Louvre'|trans }}</span>
         {% block content %}{% endblock %}
     </header>
 
@@ -45,7 +49,6 @@
 
     <footer class="py-5 fixed-bottom">
         {% block footer %}
-
 
             <div class="container">
                 <p class="m-0 text-center text-white">{% trans %}Ce site n'est pas la Billetterie officielle. Il a été réalisé dans le cadre d'un projet de formation{% endtrans %}</p>

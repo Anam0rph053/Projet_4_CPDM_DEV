@@ -2,3 +2,10 @@ app:
     resource: '@AppBundle/Controller/'
     type: annotation
     prefix: "/{_locale}"
+root:
+    path: /
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: home
+        permanent: false
+
