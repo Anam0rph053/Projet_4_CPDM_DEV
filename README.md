@@ -33,5 +33,5 @@ Tests
 $ php bin/console vendor/bin/phpunit
 ```
 
-
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/825a55392ead4cc4b658daffb8689535)](https://www.codacy.com/app/Anam0rph053/Projet_4_CPDM_DEV?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Anam0rph053/Projet_4_CPDM_DEV&amp;utm_campaign=Badge_Grade)
 
