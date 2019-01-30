@@ -18,10 +18,17 @@ $ composer install
 #Mettre en place la Base de données
 $ php bin/console doctrine:database:create
 $ php bin/console doctrine:schema:update
-
+```
+Usage
+-----
+Lancer cette commande pour pouvoir éxécuter l'application dans votre navigateur internet. 
+```bash
 #Lancer le server
 $ php bin/console server:run
-
+```
+Tests
+-----
+```bash
 #Lancer les test unitaires et fonctionnelles
 $ php bin/console vendor/bin/phpunit
 ```
