@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="booking")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\BookingRepository")
  * @MyAssert\HalfDay(groups={"booking_init"})
- * @MyAssert\OverBooking(groups={"booking_init"})
+ * @MyAssert\OverBooking()
  */
 class Booking
 {
