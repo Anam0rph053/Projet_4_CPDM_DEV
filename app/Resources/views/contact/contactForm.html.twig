@@ -8,29 +8,29 @@
                 {{ form_start(formContact) }}
                 <div class="col">
                     <div>
-                        {{ form_row(formContact.lastName, {'label':'Prénom'}) }}
+                        {{ form_row(formContact.lastName, {'label':'Prénom'|trans}) }}
 
                     </div>
                     <div>
-                        {{ form_row(formContact.firstName, {'label':'Nom'}) }}
-
-                    </div>
-                </div>
-                <div class="col">
-                    <div>
-                        {{ form_row(formContact.email, {'label':'Adresse Electronique'}) }}
+                        {{ form_row(formContact.firstName, {'label':'Nom'|trans}) }}
 
                     </div>
                 </div>
                 <div class="col">
                     <div>
-                        {{ form_row(formContact.object, {'label':'Objet du message'}) }}
+                        {{ form_row(formContact.email, {'label':'Adresse Electronique'|trans}) }}
 
                     </div>
                 </div>
                 <div class="col">
                     <div>
-                        {{ form_row(formContact.message, {'label':'Message'}) }}
+                        {{ form_row(formContact.object, {'label':'Objet du message'|trans}) }}
+
+                    </div>
+                </div>
+                <div class="col">
+                    <div>
+                        {{ form_row(formContact.message, {'label':'Message'|trans}) }}
 
                     </div>
                 </div>
